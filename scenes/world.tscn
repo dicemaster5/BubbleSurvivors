@@ -1,6 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://qd2dr56t0uk1"]
+[gd_scene load_steps=8 format=3 uid="uid://qd2dr56t0uk1"]
 
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_xrfkj"]
+[ext_resource type="Material" uid="uid://cvs5cryl31buk" path="res://materials/bubble.tres" id="2_341m3"]
+[ext_resource type="Script" path="res://scenes/game_manager.gd" id="3_xifi4"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_faupd"]
 
@@ -13,14 +15,22 @@ size = Vector2(20, 20)
 
 [node name="World" type="Node3D"]
 
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("3_xifi4")
+
+[node name="World Light" type="DirectionalLight3D" parent="GameManager"]
+transform = Transform3D(0.999867, -0.0143233, 0.0078142, -0.000255476, 0.46512, 0.885248, -0.0163142, -0.885132, 0.465054, 0, 4, 0)
+shadow_enabled = true
+
 [node name="Player" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.90453, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.149587, 0.46269, -0.0540128)
 script = ExtResource("1_xrfkj")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
 shape = SubResource("SphereShape3D_faupd")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
+material_override = ExtResource("2_341m3")
 mesh = SubResource("SphereMesh_mi2nk")
 
 [node name="Camera3D" type="Camera3D" parent="."]
@@ -34,6 +44,3 @@ shape = SubResource("WorldBoundaryShape3D_l5nr7")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ground/CollisionShape3D"]
 mesh = SubResource("PlaneMesh_4l2np")
 skeleton = NodePath("../../..")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.628411, 0.777881, 0, -0.777881, 0.628411, 0, 4, 0)
