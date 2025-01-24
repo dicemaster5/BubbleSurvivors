@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://qd2dr56t0uk1"]
+
+[ext_resource type="Script" path="res://scenes/player.gd" id="1_xrfkj"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_faupd"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_mi2nk"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_l5nr7"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_4l2np"]
+size = Vector2(20, 20)
+
+[node name="World" type="Node3D"]
+
+[node name="Player" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.90453, 0)
+script = ExtResource("1_xrfkj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+shape = SubResource("SphereShape3D_faupd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
+mesh = SubResource("SphereMesh_mi2nk")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 4.9507, 7.96668)
+
+[node name="Ground" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+shape = SubResource("WorldBoundaryShape3D_l5nr7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground/CollisionShape3D"]
+mesh = SubResource("PlaneMesh_4l2np")
+skeleton = NodePath("../../..")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.628411, 0.777881, 0, -0.777881, 0.628411, 0, 4, 0)
