@@ -9,11 +9,13 @@ extends CharacterBody3D
 # The value of the enemy. Higher value means that the enemy is more difficult to kill and should be spawned less often.
 @export var value: int = 10
 
+var did_start_dying: bool = false
+
 signal despawned(value: int)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$Damageable.died.connect(handle_despawn)
+	$Damageable.died.connect(handle_killed)
 
 	var scale_factor = randfn(1.0, 0.5)
 	scale = Vector3(scale_factor, scale_factor, scale_factor)
@@ -21,6 +23,8 @@ func _ready() -> void:
 	value = max(int(float(value) * scale_factor), 1)
 
 	$Damageable.scale_max_health(scale_factor)
+
+	$DeathAnimation.animation_finished.connect(handle_despawn)
 
 func _physics_process(_delta: float) -> void:
 	if target == null:
@@ -36,6 +40,13 @@ func _physics_process(_delta: float) -> void:
 
 	if global_position.distance_to(target.global_position) > max_dist_from_target:
 		handle_despawn()
+
+func handle_killed() -> void:
+	if did_start_dying:
+		return
+	did_start_dying = true
+
+	$DeathAnimation.play("death")
 
 func handle_despawn() -> void:
 	despawned.emit(value)

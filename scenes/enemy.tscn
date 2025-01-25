@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bj8ad7oh5pca4"]
+[gd_scene load_steps=18 format=3 uid="uid://bj8ad7oh5pca4"]
 
 [ext_resource type="Script" path="res://scenes/enemy.gd" id="1_pqivd"]
 [ext_resource type="PackedScene" uid="uid://b4k74vxbwqkvv" path="res://models/enemy/Cactus.glb" id="2_h27gd"]
@@ -6,6 +6,9 @@
 [ext_resource type="Material" path="res://materials/cactus_hat.tres" id="4_06bfg"]
 [ext_resource type="Material" uid="uid://kjup5aedw4bp" path="res://materials/cactus_spikes.tres" id="5_bupd2"]
 [ext_resource type="Script" path="res://scripts/damageable.gd" id="6_7kvce"]
+[ext_resource type="AudioStream" uid="uid://b6821vp0hovay" path="res://SoundEffects/CactusEnemy/Ogg_Death1.ogg" id="7_apc5n"]
+[ext_resource type="AudioStream" uid="uid://u6d5l7jjprwb" path="res://SoundEffects/CactusEnemy/Ogg_Death2.ogg" id="8_phm2c"]
+[ext_resource type="AudioStream" uid="uid://cy8bpmslhbb5y" path="res://SoundEffects/CactusEnemy/Ogg_Death3.ogg" id="9_4t1lk"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qow0e"]
 size = Vector3(1.85095, 2.84558, 1)
@@ -47,6 +50,54 @@ _data = {
 "enemy_move": SubResource("Animation_eev2e")
 }
 
+[sub_resource type="Animation" id="Animation_mle3s"]
+length = 0.001
+tracks/0/type = "scale_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cactus")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 1, 1, 1)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_kptvg"]
+streams_count = 3
+stream_0/stream = ExtResource("7_apc5n")
+stream_1/stream = ExtResource("8_phm2c")
+stream_2/stream = ExtResource("9_4t1lk")
+
+[sub_resource type="Animation" id="Animation_5ap36"]
+resource_name = "death"
+length = 1.44
+tracks/0/type = "scale_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cactus")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 1, 1, 1, 0.233333, 1, 0.6, 1, 0.8, 0.5, 1, 1.2, 0.7, 0.9, 0.766667, 1, 0.9, 0.9, 1.1, 1, 1, 0.3, 0.5, 0.2, 1.33333, 1, 0, 0, 0)
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DeathSound")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource("AudioStreamRandomizer_kptvg")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lurgr"]
+_data = {
+"RESET": SubResource("Animation_mle3s"),
+"death": SubResource("Animation_5ap36")
+}
+
 [node name="Enemy" type="CharacterBody3D"]
 collision_layer = 4
 collision_mask = 10
@@ -75,5 +126,12 @@ libraries = {
 "": SubResource("AnimationLibrary_p3qvh")
 }
 autoplay = "enemy_move"
+
+[node name="DeathAnimation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_lurgr")
+}
+
+[node name="DeathSound" type="AudioStreamPlayer3D" parent="."]
 
 [editable path="Cactus"]

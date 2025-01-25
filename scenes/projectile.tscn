@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bcxroxs6keajk"]
+[gd_scene load_steps=4 format=3 uid="uid://75yulxtrp7dk"]
 
 [ext_resource type="PackedScene" uid="uid://bq3tf10uo7bsb" path="res://models/player/Projectile.glb" id="1_1orbl"]
 [ext_resource type="Script" path="res://scenes/projectile.gd" id="1_qohhj"]

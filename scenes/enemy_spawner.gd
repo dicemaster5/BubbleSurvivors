@@ -33,10 +33,10 @@ func spawn_enemy() -> void:
 	var max_square = pow(base_spawn_radius + spawn_radius_variance, 2)
 	var rand_radius = sqrt(min_square + randf() * (max_square - min_square))
 
+	enemy_parent.add_child(enemy)
 	enemy.global_position = global_position + Vector3(cos(rand_dir) * rand_radius, 0, sin(rand_dir) * rand_radius)
 	enemy.despawned.connect(on_enemy_despawned)
 
-	enemy_parent.add_child(enemy)
 
 	current_enemy_value += enemy.value
 
