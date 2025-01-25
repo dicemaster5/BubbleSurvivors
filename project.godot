@@ -57,3 +57,4 @@ quick_quit={
 3d_physics/layer_1="player"
 3d_physics/layer_2="hazard"
 3d_physics/layer_3="projectile"
+3d_physics/layer_4="enemy"
