@@ -62,6 +62,7 @@ func _process(delta: float) -> void:
 	if randf() < 0.01 * delta:
 		$AnimationPlayer.play("make_noises")
 
+
 func handle_killed() -> void:
 	if did_start_dying:
 		return
