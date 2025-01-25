@@ -1,11 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://byjojrcm551uw"]
+[gd_scene load_steps=7 format=3 uid="uid://byjojrcm551uw"]
 
 [ext_resource type="Material" uid="uid://br3vmrnkoxjwr" path="res://materials/cactus.tres" id="1_4ggxn"]
+[ext_resource type="PackedScene" uid="uid://dy68gb06amlwu" path="res://models/Enemy model/Cactus_w_spike.glb" id="1_ulm5c"]
+[ext_resource type="Script" path="res://scripts/cactus_hat_enabler.gd" id="2_or4wp"]
+[ext_resource type="Material" uid="uid://cylgormxvsjkq" path="res://materials/cactus_hat.tres" id="3_kfir2"]
+[ext_resource type="Material" uid="uid://cwallljq5t4yk" path="res://materials/cactus_spikes.tres" id="4_6twxu"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_uun03"]
 size = Vector3(1.19312, 1.60242, 1.1084)
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_heugo"]
 
 [node name="Cactus" type="StaticBody3D"]
 collision_layer = 2
@@ -15,17 +17,19 @@ collision_mask = 7
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.801208, 0)
 shape = SubResource("BoxShape3D_uun03")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.000908164, -0.00128115, 0.999999, 0.000335411, 0.999999, 0.00128084, -1, 0.000334227, 0.0009086, 0.0566323, 0.5049, -0.0572251)
-material_override = ExtResource("1_4ggxn")
-mesh = SubResource("CapsuleMesh_heugo")
+[node name="Cactus_w_spike" parent="." node_paths=PackedStringArray("hat_node") instance=ExtResource("1_ulm5c")]
+script = ExtResource("2_or4wp")
+hat_node = NodePath("Cowboy hat")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.000508212, -0.298071, 0.473613, 0.000187697, 0.473614, 0.298071, -0.559604, -0.000111854, 0.000530092, -0.56447, 1.0928, -0.057592)
+[node name="Body" parent="Cactus_w_spike" index="0"]
 material_override = ExtResource("1_4ggxn")
-mesh = SubResource("CapsuleMesh_heugo")
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.000508212, 0.56005, 0.391513, 0.000187697, 0.462926, -0.473655, -0.559604, 0.000663896, 0.000196687, 0.506477, 0.748636, -0.0553739)
-material_override = ExtResource("1_4ggxn")
-mesh = SubResource("CapsuleMesh_heugo")
+[node name="Cowboy hat" parent="Cactus_w_spike" index="1"]
+visible = false
+material_override = ExtResource("3_kfir2")
+
+[node name="Spike_100" parent="Cactus_w_spike" index="2"]
+material_override = ExtResource("4_6twxu")
+cast_shadow = 0
+
+[editable path="Cactus_w_spike"]
