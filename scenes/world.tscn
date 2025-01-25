@@ -64,7 +64,7 @@ collision_mask = 13
 script = ExtResource("7_onfek")
 max_health = 100
 
-[node name="Damageable" type="Node" parent="Enemy"]
+[node name="Damageable2" type="Node" parent="Enemy"]
 script = ExtResource("7_onfek")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
