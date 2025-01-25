@@ -4,12 +4,12 @@
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="3_xifi4"]
 [ext_resource type="Material" uid="uid://wrr7reshtt80" path="res://materials/ground.tres" id="4_15bx4"]
 [ext_resource type="Script" path="res://scripts/camera_controller.gd" id="4_aelyh"]
-[ext_resource type="PackedScene" uid="uid://byjojrcm551uw" path="res://scenes/cactus_hazard.tscn" id="6_cainy"]
+[ext_resource type="PackedScene" path="res://scenes/cactus_hazard.tscn" id="6_cainy"]
 [ext_resource type="PackedScene" uid="uid://bj8ad7oh5pca4" path="res://scenes/enemy.tscn" id="6_xkebw"]
 [ext_resource type="Script" path="res://scripts/damageable.gd" id="7_onfek"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_4l2np"]
-size = Vector2(1000, 1000)
+size = Vector2(100, 100)
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_l5nr7"]
 

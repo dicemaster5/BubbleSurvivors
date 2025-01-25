@@ -20,8 +20,8 @@ func spawn_projectile() -> void:
 	var fire_direction = -player.transform.basis.z.normalized()
 
 	# Todo: what do we do with this as the player grows?
-	var fire_offset = fire_direction * 1.0
+	var fire_offset = fire_direction * 2.0
 
+	projectile.direction = fire_direction
 	parent.add_child(projectile)
 	projectile.global_position = player.global_position + fire_offset
-	projectile.direction = fire_direction

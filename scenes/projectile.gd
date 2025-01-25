@@ -7,6 +7,7 @@ extends RigidBody3D
 func _ready() -> void:
 	$Lifetime.timeout.connect(queue_free)
 	body_entered.connect(on_body_entered)
+	transform.basis = Basis.looking_at(direction)
 
 func _physics_process(delta: float) -> void:
 	position += direction * speed * delta
