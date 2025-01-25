@@ -37,15 +37,28 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, friction)
 		velocity.z = move_toward(velocity.z, 0, friction)
 
-	# var collider : KinematicCollision3D = move_and_collide(velocity)
-	# if collider != null:
-	# 	print("Collided with: ", collider)
-	# 		# if move_and_collide(Vector3.ZERO, true).get_collider().get_collision_layer() != 8:
-	# 		# 	print("Player got hit and died!")
-	# 		# 	damageable.damage(100)
-	
+
+	if get_slide_collision_count() > 0:
+		var body = get_slide_collision(0)
+		var col_layer = body.get_collider().get_collision_layer()
+		if col_layer != 1 && col_layer != 8:
+			print("collided and died from col layer: ", col_layer)
+			death()
+
 	move_and_slide()
 
 func death() -> void:
 	player_died.emit()
+	squish(self, Vector3(0.75,1.5,0.75), Vector3.ONE, 0.25)
+	await get_tree().create_timer(0.25).timeout
 	queue_free.call_deferred()
+
+
+## Squish tween.
+static func squish(node_to_squish: Node3D, squich_amount: Vector3, start_scale: Vector3, squish_duration: float = 0.5) -> void:
+	var time := squish_duration / 3.0
+	var tween: Tween = node_to_squish.create_tween().chain().set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(node_to_squish, "scale", squich_amount, time)
+	tween.tween_property(node_to_squish, "scale", start_scale + (start_scale * 0.15), time)
+	tween.tween_property(node_to_squish, "scale", start_scale, time)
+

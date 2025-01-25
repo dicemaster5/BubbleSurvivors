@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" path="res://scenes/enemy_spawner.tscn" id="5_6wonv"]
 [ext_resource type="Script" path="res://scripts/projectile_spawner.gd" id="5_feg4p"]
 [ext_resource type="PackedScene" uid="uid://bcxroxs6keajk" path="res://scenes/projectile.tscn" id="6_52ojm"]
-[ext_resource type="PackedScene" uid="uid://s4fxpd7hwv8e" path="res://scenes/enemy.tscn" id="6_wqvc3"]
+[ext_resource type="PackedScene" uid="uid://bj8ad7oh5pca4" path="res://scenes/enemy.tscn" id="6_wqvc3"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_faupd"]
 radius = 0.75
@@ -33,6 +33,8 @@ mesh = SubResource("SphereMesh_mi2nk")
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
 [node name="EnemySpawner" parent="." instance=ExtResource("5_6wonv")]
+target_enemy_value = 250
+spawn_delay = 1.5
 enemy_scene = ExtResource("6_wqvc3")
 
 [node name="ProjectileSpawner" type="Node" parent="."]

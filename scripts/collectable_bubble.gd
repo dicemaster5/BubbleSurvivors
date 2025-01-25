@@ -5,7 +5,6 @@ var is_attached: bool
 func _ready() -> void:
 	body_entered.connect(on_body_entered)
 
-
 func _process(_delta: float) -> void:
 	pass
 
@@ -13,22 +12,23 @@ func on_body_entered(body: Node) -> void:
 	# print("Collided with ", body.name)
 	if body is PhysicsBody3D:
 		if body.collision_layer == 2:
-			# print("player collided!")
+			print("player collided!")
 			if !is_attached:
 				connect_to_body(body)
 			return
-			
+
 		elif body.collision_layer == 8:
-			# print("Bubble collided!")
+			print("Bubble collided!")
 			if !is_attached:
 				connect_to_body(body)
 			return
 
 		else:
+			print("popped from ", body.collision_layer)
 			pop_bubble()
 
 func connect_to_body(body: Node3D) -> void:
-	# print("Bubble Connected! to ", body.name)
+	print("Bubble Connected! to ", body.name)
 	squish(self, Vector3(1.2,0.6,1.2), Vector3.ONE, 0.2)
 	freeze = true
 	reparent.call_deferred(body)

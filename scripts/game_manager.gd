@@ -10,6 +10,9 @@ func  _input(event: InputEvent) -> void:
 	if event.is_action_pressed("quick_quit"):
 		get_tree().quit()
 
+	if event.is_action_pressed("quick_restart"):
+		get_tree().reload_current_scene()
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass

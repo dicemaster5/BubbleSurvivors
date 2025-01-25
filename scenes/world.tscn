@@ -1,11 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://qd2dr56t0uk1"]
+[gd_scene load_steps=12 format=3 uid="uid://qd2dr56t0uk1"]
 
 [ext_resource type="PackedScene" uid="uid://7ohxd0qm20qn" path="res://scenes/player.tscn" id="3_stshx"]
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="3_xifi4"]
 [ext_resource type="Material" uid="uid://wrr7reshtt80" path="res://materials/ground.tres" id="4_15bx4"]
 [ext_resource type="Script" path="res://scripts/camera_controller.gd" id="4_aelyh"]
-[ext_resource type="PackedScene" path="res://scenes/cactus_hazard.tscn" id="6_cainy"]
-[ext_resource type="PackedScene" path="res://scenes/tumbleweed_spawner.tscn" id="6_iaky0"]
+[ext_resource type="PackedScene" uid="uid://byjojrcm551uw" path="res://scenes/cactus_hazard.tscn" id="6_cainy"]
 [ext_resource type="PackedScene" uid="uid://dbcu8fbojyx8" path="res://scenes/collectable_bubble.tscn" id="8_kk2hr"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_4l2np"]
@@ -59,13 +58,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.8559, 1.90735e-06, 8.34557
 
 [node name="Cactus4" parent="." instance=ExtResource("6_cainy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5137, 1.90735e-06, -14.2483)
-
-[node name="TumbleweedSpawner" parent="." node_paths=PackedStringArray("player_ref") instance=ExtResource("6_iaky0")]
-player_ref = NodePath("../Player")
-tumbleweed_speed = 7.0
-tumbleweed_perish_distance = 100.0
-spawn_radius = 75.0
-spawn_interval = 30.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_afun3")

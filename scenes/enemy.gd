@@ -1,13 +1,17 @@
-extends CharacterBody3D
+class_name Enemy extends CharacterBody3D
 
 @export var target: Node3D
 @export var speed: float = 0.5
+
+@export var drop_item: PackedScene
+@export var drop_chance: float = 0.25
 
 # The enemy will despawn if it is too far from the target.
 @export var max_dist_from_target: float = 70.0
 
 # The value of the enemy. Higher value means that the enemy is more difficult to kill and should be spawned less often.
 @export var value: int = 10
+@export var collider: CollisionShape3D
 
 var did_start_dying: bool = false
 
@@ -17,6 +21,8 @@ signal despawned(value: int)
 func _ready() -> void:
 	$Damageable.died.connect(handle_killed)
 	$Damageable.damaged.connect(play_hit_sound)
+	$Damageable.died.connect(spawn_drop)
+	$Damageable.died.connect(handle_despawn)
 
 	var scale_factor = randfn(1.0, 0.2)
 	scale = Vector3(scale_factor, scale_factor, scale_factor)
@@ -32,6 +38,9 @@ func _physics_process(_delta: float) -> void:
 	if target == null:
 		return
 	velocity = (target.global_position - global_position).normalized() * speed
+	
+	# Stay on ground!
+	global_position.y = 0
 
 	# make the enemy face the target
 	var target_xy = Vector2(target.global_position.x, target.global_position.z)
@@ -58,3 +67,11 @@ func handle_killed() -> void:
 func handle_despawn() -> void:
 	despawned.emit(value)
 	queue_free()
+
+func spawn_drop() -> void:
+	if randf() < drop_chance:
+		var item: Node3D = drop_item.instantiate()
+		var enemy_parent = get_tree().get_root()
+		enemy_parent.add_child(item)
+		item.global_position = global_position + (Vector3.UP * 0.5)
+		print("dropping item!")
