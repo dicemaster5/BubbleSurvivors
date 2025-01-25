@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1x8badl80ulh"]
+
+[ext_resource type="Script" path="res://scripts/crow_spawner.gd" id="1_jma08"]
+
+[node name="CrowSpawner" type="Node"]
+script = ExtResource("1_jma08")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
