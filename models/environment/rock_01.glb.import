@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://b4k74vxbwqkvv"
-path="res://.godot/imported/Cactus.glb-a45893280c74344aa6ac9344a7319fbb.scn"
+uid="uid://dklpv33s6iqmm"
+path="res://.godot/imported/rock_01.glb-b900a75aa6caaf8e80fca679abb99ed4.scn"
 
 [deps]
 
-source_file="res://models/Enemy model/Cactus.glb"
-dest_files=["res://.godot/imported/Cactus.glb-a45893280c74344aa6ac9344a7319fbb.scn"]
+source_file="res://models/environment/rock_01.glb"
+dest_files=["res://.godot/imported/rock_01.glb-b900a75aa6caaf8e80fca679abb99ed4.scn"]
 
 [params]
 

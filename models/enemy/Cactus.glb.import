@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bq3tf10uo7bsb"
-path="res://.godot/imported/Projectile.glb-479cb980a1cae05b170ce95ff4fc13f3.scn"
+uid="uid://b4k74vxbwqkvv"
+path="res://.godot/imported/Cactus.glb-652e6e708ef60b5f4e488deacb18191e.scn"
 
 [deps]
 
-source_file="res://models/player model/Projectile.glb"
-dest_files=["res://.godot/imported/Projectile.glb-479cb980a1cae05b170ce95ff4fc13f3.scn"]
+source_file="res://models/enemy/Cactus.glb"
+dest_files=["res://.godot/imported/Cactus.glb-652e6e708ef60b5f4e488deacb18191e.scn"]
 
 [params]
 
@@ -32,5 +32,5 @@ animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={}
-gltf/naming_version=0
+gltf/naming_version=1
 gltf/embedded_image_handling=1
