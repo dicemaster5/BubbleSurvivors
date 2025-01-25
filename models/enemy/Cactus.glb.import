@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://c1alrmmevr3dm"
-path="res://.godot/imported/Ship.glb-55f6f5f7b260ea376630c72b1c4e7949.scn"
+uid="uid://b4k74vxbwqkvv"
+path="res://.godot/imported/Cactus.glb-652e6e708ef60b5f4e488deacb18191e.scn"
 
 [deps]
 
-source_file="res://models/player model/Ship.glb"
-dest_files=["res://.godot/imported/Ship.glb-55f6f5f7b260ea376630c72b1c4e7949.scn"]
+source_file="res://models/enemy/Cactus.glb"
+dest_files=["res://.godot/imported/Cactus.glb-652e6e708ef60b5f4e488deacb18191e.scn"]
 
 [params]
 

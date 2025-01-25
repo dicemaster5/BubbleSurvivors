@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://byjojrcm551uw"]
 
 [ext_resource type="Material" uid="uid://br3vmrnkoxjwr" path="res://materials/cactus.tres" id="1_4ggxn"]
-[ext_resource type="PackedScene" uid="uid://dy68gb06amlwu" path="res://models/Enemy model/Cactus_w_spike.glb" id="1_ulm5c"]
+[ext_resource type="PackedScene" uid="uid://b4k74vxbwqkvv" path="res://models/enemy/Cactus.glb" id="1_5akdn"]
 [ext_resource type="Script" path="res://scripts/cactus_hat_enabler.gd" id="2_or4wp"]
 [ext_resource type="Material" uid="uid://cylgormxvsjkq" path="res://materials/cactus_hat.tres" id="3_kfir2"]
 [ext_resource type="Material" uid="uid://cwallljq5t4yk" path="res://materials/cactus_spikes.tres" id="4_6twxu"]
@@ -17,19 +17,18 @@ collision_mask = 7
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.801208, 0)
 shape = SubResource("BoxShape3D_uun03")
 
-[node name="Cactus_w_spike" parent="." node_paths=PackedStringArray("hat_node") instance=ExtResource("1_ulm5c")]
+[node name="Cactus" parent="." node_paths=PackedStringArray("hat_node") instance=ExtResource("1_5akdn")]
 script = ExtResource("2_or4wp")
 hat_node = NodePath("Cowboy hat")
 
-[node name="Body" parent="Cactus_w_spike" index="0"]
+[node name="Body" parent="Cactus" index="0"]
 material_override = ExtResource("1_4ggxn")
 
-[node name="Cowboy hat" parent="Cactus_w_spike" index="1"]
+[node name="Cowboy hat" parent="Cactus" index="1"]
 visible = false
 material_override = ExtResource("3_kfir2")
 
-[node name="Spike_100" parent="Cactus_w_spike" index="2"]
+[node name="Spike_001" parent="Cactus" index="2"]
 material_override = ExtResource("4_6twxu")
-cast_shadow = 0
 
-[editable path="Cactus_w_spike"]
+[editable path="Cactus"]
