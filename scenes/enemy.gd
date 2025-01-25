@@ -13,6 +13,8 @@ class_name Enemy extends CharacterBody3D
 @export var value: int = 10
 @export var collider: CollisionShape3D
 
+@export var projectile_impact: PackedScene
+
 var did_start_dying: bool = false
 
 signal despawned(value: int)
@@ -23,6 +25,7 @@ func _ready() -> void:
 	$Damageable.damaged.connect(play_hit_sound)
 	$Damageable.died.connect(spawn_drop)
 	$Damageable.died.connect(handle_despawn)
+	$Damageable.damaged.connect(play_hit_effects)
 
 	var scale_factor = randfn(1.0, 0.2)
 	scale = Vector3(scale_factor, scale_factor, scale_factor)
@@ -31,8 +34,11 @@ func _ready() -> void:
 
 	$Damageable.scale_max_health(scale_factor)
 
-func play_hit_sound(_amount: int) -> void:
+func play_hit_effects(_amount: int) -> void:
 	$HitAnimations.play("hit")
+
+	var impact = projectile_impact.instantiate()
+	add_child(impact)
 
 func _physics_process(_delta: float) -> void:
 	if target == null:
