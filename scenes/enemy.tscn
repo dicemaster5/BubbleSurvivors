@@ -1,7 +1,8 @@
-[gd_scene load_steps=27 format=3 uid="uid://bj8ad7oh5pca4"]
+[gd_scene load_steps=28 format=3 uid="uid://bj8ad7oh5pca4"]
 
 [ext_resource type="Script" path="res://scenes/enemy.gd" id="1_pqivd"]
 [ext_resource type="PackedScene" uid="uid://b4k74vxbwqkvv" path="res://models/enemy/Cactus.glb" id="2_h27gd"]
+[ext_resource type="PackedScene" uid="uid://4eino1t10up6" path="res://scenes/projectile_impact.tscn" id="2_yt1qp"]
 [ext_resource type="Material" uid="uid://488juvptgnbs" path="res://materials/cactus.tres" id="3_js6t3"]
 [ext_resource type="Material" path="res://materials/cactus_hat.tres" id="4_06bfg"]
 [ext_resource type="Script" path="res://scripts/damageable.gd" id="6_7kvce"]
@@ -174,6 +175,7 @@ _data = {
 collision_layer = 4
 collision_mask = 10
 script = ExtResource("1_pqivd")
+projectile_impact = ExtResource("2_yt1qp")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.034369, 0.777256, -0.00280845)

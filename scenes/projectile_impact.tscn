@@ -1,4 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://b6yw4yg8obbid"]
+[gd_scene load_steps=13 format=3 uid="uid://4eino1t10up6"]
+
+[ext_resource type="Script" path="res://scenes/projectile_impact.gd" id="1_syopk"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rydnv"]
 particle_flag_align_y = true
@@ -89,6 +91,7 @@ randomness = 1.0
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_rydnv")
 draw_pass_1 = SubResource("CylinderMesh_3i5cf")
+script = ExtResource("1_syopk")
 
 [node name="ImpactSmoke" type="GPUParticles3D" parent="."]
 amount = 6
@@ -106,3 +109,7 @@ explosiveness = 1.0
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_obl4d")
 draw_pass_1 = SubResource("CylinderMesh_vngvw")
+
+[node name="DespawnTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true

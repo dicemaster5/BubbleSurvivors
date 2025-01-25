@@ -9,6 +9,8 @@ extends CharacterBody3D
 # The value of the enemy. Higher value means that the enemy is more difficult to kill and should be spawned less often.
 @export var value: int = 10
 
+@export var projectile_impact: PackedScene
+
 var did_start_dying: bool = false
 
 signal despawned(value: int)
@@ -16,7 +18,7 @@ signal despawned(value: int)
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$Damageable.died.connect(handle_killed)
-	$Damageable.damaged.connect(play_hit_sound)
+	$Damageable.damaged.connect(play_hit_effects)
 
 	var scale_factor = randfn(1.0, 0.2)
 	scale = Vector3(scale_factor, scale_factor, scale_factor)
@@ -25,8 +27,11 @@ func _ready() -> void:
 
 	$Damageable.scale_max_health(scale_factor)
 
-func play_hit_sound(_amount: int) -> void:
+func play_hit_effects(_amount: int) -> void:
 	$HitAnimations.play("hit")
+
+	var impact = projectile_impact.instantiate()
+	add_child(impact)
 
 func _physics_process(_delta: float) -> void:
 	if target == null:
