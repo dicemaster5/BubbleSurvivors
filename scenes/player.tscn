@@ -1,0 +1,30 @@
+[gd_scene load_steps=7 format=3 uid="uid://cx23jyyh65mji"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_mbgsa"]
+[ext_resource type="Material" uid="uid://cvs5cryl31buk" path="res://materials/bubble.tres" id="2_4uq68"]
+[ext_resource type="PackedScene" uid="uid://c1alrmmevr3dm" path="res://models/player model/Ship.glb" id="3_vheof"]
+[ext_resource type="Script" path="res://scripts/damageable.gd" id="4_sup54"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_faupd"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_mi2nk"]
+
+[node name="Player" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+collision_mask = 7
+script = ExtResource("1_mbgsa")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_faupd")
+
+[node name="BubbleMesh" type="MeshInstance3D" parent="."]
+material_override = ExtResource("2_4uq68")
+mesh = SubResource("SphereMesh_mi2nk")
+
+[node name="Ship" parent="." instance=ExtResource("3_vheof")]
+transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 0, 0, 0)
+
+[node name="Damageable" type="Node" parent="."]
+script = ExtResource("4_sup54")
+
+[editable path="Ship"]
