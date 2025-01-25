@@ -17,7 +17,7 @@ noise = SubResource("FastNoiseLite_4w08k")
 [resource]
 diffuse_mode = 3
 specular_mode = 1
-albedo_color = Color(0.596676, 0.436307, 0.298791, 1)
+albedo_color = Color(0.72, 0.52656, 0.3456, 1)
 normal_enabled = true
 normal_texture = SubResource("NoiseTexture2D_fnqmt")
 uv1_scale = Vector3(0.02, 0.02, 0.02)
