@@ -3,15 +3,27 @@ extends CharacterBody3D
 @export var target: Node3D
 @export var speed: float = 0.5
 
+# The enemy will despawn if it is too far from the target.
+@export var max_dist_from_target: float = 70.0
+
+# The value of the enemy. Higher value means that the enemy is more difficult to kill and should be spawned less often.
+@export var value: int = 10
+
+signal despawned(value: int)
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$Damageable.died.connect(on_died)
+	$Damageable.died.connect(handle_despawn)
 
 func _physics_process(delta: float) -> void:
 	velocity = (target.global_position - global_position).normalized() * speed
 	move_and_slide()
 
-func on_died() -> void:
+	if global_position.distance_to(target.global_position) > max_dist_from_target:
+		handle_despawn()
+
+func handle_despawn() -> void:
+	despawned.emit(value)
 	queue_free()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

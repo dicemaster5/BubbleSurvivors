@@ -1,12 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://7ohxd0qm20qn"]
+[gd_scene load_steps=11 format=3 uid="uid://7ohxd0qm20qn"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_mbgsa"]
 [ext_resource type="Material" uid="uid://cvs5cryl31buk" path="res://materials/bubble.tres" id="2_4uq68"]
 [ext_resource type="PackedScene" uid="uid://c1alrmmevr3dm" path="res://models/player/Ship.glb" id="3_vheof"]
 [ext_resource type="Script" path="res://scripts/damageable.gd" id="4_sup54"]
+[ext_resource type="PackedScene" uid="uid://cii1lsucm3j0x" path="res://scenes/enemy_spawner.tscn" id="5_6wonv"]
 [ext_resource type="Script" path="res://scripts/projectile_spawner.gd" id="5_feg4p"]
 [ext_resource type="PackedScene" uid="uid://75yulxtrp7dk" path="res://scenes/projectile.tscn" id="6_52ojm"]
-
+[ext_resource type="PackedScene" uid="uid://bj8ad7oh5pca4" path="res://scenes/enemy.tscn" id="6_wqvc3"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_faupd"]
 radius = 0.75
@@ -33,6 +34,9 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
 [node name="Damageable" type="Node" parent="."]
 script = ExtResource("4_sup54")
+
+[node name="EnemySpawner" parent="." instance=ExtResource("5_6wonv")]
+enemy_scene = ExtResource("6_wqvc3")
 
 [node name="ProjectileSpawner" type="Node" parent="."]
 script = ExtResource("5_feg4p")

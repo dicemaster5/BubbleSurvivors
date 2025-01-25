@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="3_xifi4"]
 [ext_resource type="Material" uid="uid://wrr7reshtt80" path="res://materials/ground.tres" id="4_15bx4"]
 [ext_resource type="Script" path="res://scripts/camera_controller.gd" id="4_aelyh"]
-[ext_resource type="PackedScene" uid="uid://byjojrcm551uw" path="res://scenes/cactus_hazard.tscn" id="6_cainy"]
+[ext_resource type="PackedScene" path="res://scenes/cactus_hazard.tscn" id="6_cainy"]
 [ext_resource type="PackedScene" uid="uid://bj8ad7oh5pca4" path="res://scenes/enemy.tscn" id="6_xkebw"]
 [ext_resource type="Script" path="res://scripts/damageable.gd" id="7_onfek"]
 
@@ -58,13 +58,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.8559, 1.90735e-06, 8.34557
 [node name="Cactus4" parent="." instance=ExtResource("6_cainy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5137, 1.90735e-06, -14.2483)
 
-[node name="Enemy" parent="." instance=ExtResource("6_xkebw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 0, -6.61)
-collision_mask = 13
-script = ExtResource("7_onfek")
-max_health = 100
+[node name="Enemy" parent="." node_paths=PackedStringArray("target") instance=ExtResource("6_xkebw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.27)
+target = NodePath("../Player")
 
-[node name="Damageable" type="Node" parent="Enemy"]
+[node name="Damageable2" type="Node" parent="Enemy"]
 script = ExtResource("7_onfek")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
