@@ -22,7 +22,7 @@ signal despawned(value: int)
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$Damageable.died.connect(handle_killed)
-	$Damageable.damaged.connect(play_hit_sound)
+	# $Damageable.damaged.connect(play_hit_sound)
 	$Damageable.died.connect(spawn_drop)
 	$Damageable.died.connect(handle_despawn)
 	$Damageable.damaged.connect(play_hit_effects)
