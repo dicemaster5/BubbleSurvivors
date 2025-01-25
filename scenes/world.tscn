@@ -63,6 +63,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5137, 1.90735e-06, -14.2483
 
 [node name="Enemy" parent="." instance=ExtResource("6_xkebw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 0, -6.61)
+collision_layer = 8
 collision_mask = 13
 script = ExtResource("7_onfek")
 max_health = 100

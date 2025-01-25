@@ -15,7 +15,14 @@ signal despawned(value: int)
 func _ready() -> void:
 	$Damageable.died.connect(handle_despawn)
 
-func _physics_process(delta: float) -> void:
+	var scale_factor = randfn(1.0, 0.5)
+	scale = Vector3(scale_factor, scale_factor, scale_factor)
+
+	value = max(int(float(value) * scale_factor), 1)
+
+	$Damageable.scale_max_health(scale_factor)
+
+func _physics_process(_delta: float) -> void:
 	if target == null:
 		return
 	velocity = (target.global_position - global_position).normalized() * speed
@@ -33,7 +40,3 @@ func _physics_process(delta: float) -> void:
 func handle_despawn() -> void:
 	despawned.emit(value)
 	queue_free()
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
