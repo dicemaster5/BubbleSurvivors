@@ -43,6 +43,10 @@ func _physics_process(_delta: float) -> void:
 	if global_position.distance_to(target.global_position) > max_dist_from_target:
 		handle_despawn()
 
+func _process(delta: float) -> void:
+	if randf() < 0.01 * delta:
+		$AnimationPlayer.play("make_noises")
+
 func handle_killed() -> void:
 	if did_start_dying:
 		return

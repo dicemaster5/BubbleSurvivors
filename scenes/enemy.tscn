@@ -1,13 +1,17 @@
-[gd_scene load_steps=21 format=3 uid="uid://bj8ad7oh5pca4"]
+[gd_scene load_steps=27 format=3 uid="uid://bj8ad7oh5pca4"]
 
 [ext_resource type="Script" path="res://scenes/enemy.gd" id="1_pqivd"]
 [ext_resource type="PackedScene" uid="uid://b4k74vxbwqkvv" path="res://models/enemy/Cactus.glb" id="2_h27gd"]
 [ext_resource type="Material" uid="uid://488juvptgnbs" path="res://materials/cactus.tres" id="3_js6t3"]
 [ext_resource type="Material" path="res://materials/cactus_hat.tres" id="4_06bfg"]
 [ext_resource type="Script" path="res://scripts/damageable.gd" id="6_7kvce"]
+[ext_resource type="AudioStream" uid="uid://bp62xpnryp1q6" path="res://SoundEffects/CactusEnemy/Ogg_MakingNoise1.ogg" id="6_pgedy"]
 [ext_resource type="AudioStream" uid="uid://b6821vp0hovay" path="res://SoundEffects/CactusEnemy/Ogg_Death1.ogg" id="7_apc5n"]
+[ext_resource type="AudioStream" uid="uid://db6ek51podm8x" path="res://SoundEffects/CactusEnemy/Ogg_MakingNoise2.ogg" id="7_tvv0u"]
+[ext_resource type="AudioStream" uid="uid://dn4ckssin7nt7" path="res://SoundEffects/CactusEnemy/Ogg_smacktalk1.ogg" id="8_oki4o"]
 [ext_resource type="AudioStream" uid="uid://u6d5l7jjprwb" path="res://SoundEffects/CactusEnemy/Ogg_Death2.ogg" id="8_phm2c"]
 [ext_resource type="AudioStream" uid="uid://cy8bpmslhbb5y" path="res://SoundEffects/CactusEnemy/Ogg_Death3.ogg" id="9_4t1lk"]
+[ext_resource type="AudioStream" uid="uid://bu0sedmn2cl47" path="res://SoundEffects/CactusEnemy/Ogg_smacktalk2.ogg" id="9_v1jox"]
 [ext_resource type="AudioStream" uid="uid://b3hkwu32ourbf" path="res://SoundEffects/Projectile/Ogg_Impact1.ogg" id="10_43i42"]
 [ext_resource type="AudioStream" uid="uid://d0pmgqyt432vh" path="res://SoundEffects/Projectile/Ogg_Impact2.ogg" id="11_l112w"]
 
@@ -45,10 +49,38 @@ tracks/0/keys = {
 "values": [Vector3(0, 0, -0.0872665), Vector3(0, 0, 0.0872665), Vector3(0, 0, -0.0872665)]
 }
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_y1c78"]
+playback_mode = 1
+random_pitch = 1.1
+streams_count = 4
+stream_0/stream = ExtResource("6_pgedy")
+stream_1/stream = ExtResource("8_oki4o")
+stream_2/stream = ExtResource("7_tvv0u")
+stream_3/stream = ExtResource("9_v1jox")
+
+[sub_resource type="Animation" id="Animation_bwqw5"]
+resource_name = "make_noises"
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DeathSound")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource("AudioStreamRandomizer_y1c78")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/0/use_blend = true
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_p3qvh"]
 _data = {
 "RESET": SubResource("Animation_nxew3"),
-"enemy_move": SubResource("Animation_eev2e")
+"enemy_move": SubResource("Animation_eev2e"),
+"make_noises": SubResource("Animation_bwqw5")
 }
 
 [sub_resource type="Animation" id="Animation_mle3s"]
