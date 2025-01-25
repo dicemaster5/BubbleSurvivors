@@ -1,19 +1,40 @@
 extends CharacterBody3D
 
-@export var move_speed: float = 1.0
-@export var rotate_speed: float = 5.0
-@export var jump_velocity: float = 4.5
-@export var tank_controls: bool = false
+@export var max_rotate_speed: float = 5.0
+@export var max_speed : float = 5
+@export var acceleration : float = 5
+@export var friction : float = 5
+@export var angular_friction : float = 5
+
+@export var tank_controls: bool = true
+
+var move_speed: float
+var rotate_speed: float
 
 func _physics_process(delta: float) -> void:
 	
 	# Do Tank Controls
 	if tank_controls:
-		var rotate_dir = Input.get_axis("move_left", "move_right")
+		# Rotation
+		var rotate_dir = Input.get_axis("move_right", "move_left")
+		if rotate_dir != 0:
+			rotate_speed = move_toward(rotate_speed, max_rotate_speed, acceleration)
+		else:
+			rotate_speed = move_toward(rotate_speed, 0, angular_friction)
+		
 		rotation += Vector3(0, rotate_speed * rotate_dir * delta, 0)
 
-		var move_dir = Input.get_axis("move_up", "move_down")
-		#velocity = transform.basis move_speed * move_dir
+		# Movement
+		var move_dir = clamp(Input.get_axis("move_down", "move_up"), 0, 1)
+		if move_dir > 0:
+			move_speed = move_toward(move_speed, max_speed, acceleration)
+			# velocity = move_toward(velocity.x, direction * max_speed, acceleration)
+			velocity = (-transform.basis.z * move_dir) * move_speed
+		else:
+			move_speed = move_toward(move_speed, 0, friction)
+			velocity.x = move_toward(velocity.x, 0, friction)
+			velocity.z = move_toward(velocity.z, 0, friction)
+		
 		move_and_slide()
 		return
 

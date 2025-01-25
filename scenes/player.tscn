@@ -5,9 +5,10 @@
 [ext_resource type="PackedScene" uid="uid://c1alrmmevr3dm" path="res://models/player model/Ship.glb" id="3_vheof"]
 [ext_resource type="Script" path="res://scripts/damageable.gd" id="4_sup54"]
 [ext_resource type="Script" path="res://scripts/projectile_spawner.gd" id="5_feg4p"]
-[ext_resource type="PackedScene" uid="uid://75yulxtrp7dk" path="res://scenes/projectile.tscn" id="6_52ojm"]
+[ext_resource type="PackedScene" path="res://scenes/projectile.tscn" id="6_52ojm"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_faupd"]
+radius = 0.75
 
 [sub_resource type="SphereMesh" id="SphereMesh_mi2nk"]
 
@@ -15,11 +16,14 @@
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 collision_mask = 7
 script = ExtResource("1_mbgsa")
+acceleration = 0.05
+friction = 0.05
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_faupd")
 
 [node name="BubbleMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
 material_override = ExtResource("2_4uq68")
 mesh = SubResource("SphereMesh_mi2nk")
 
