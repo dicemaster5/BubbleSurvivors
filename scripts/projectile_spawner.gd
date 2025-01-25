@@ -15,6 +15,13 @@ func _on_fire_timer_timeout() -> void:
 
 func spawn_projectile() -> void:
 	var projectile = projectile_scene.instantiate()
-	get_parent().add_child(projectile)
-	projectile.global_position = get_parent().global_position
-	projectile.direction = -get_parent().transform.basis.z.normalized()
+	var parent = get_tree().get_root().get_node("World")
+	var player = parent.get_node("Player")
+	var fire_direction = -player.transform.basis.z.normalized()
+
+	# Todo: what do we do with this as the player grows?
+	var fire_offset = fire_direction * 1.0
+
+	parent.add_child(projectile)
+	projectile.global_position = player.global_position + fire_offset
+	projectile.direction = fire_direction
