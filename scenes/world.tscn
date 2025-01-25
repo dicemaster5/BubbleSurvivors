@@ -1,15 +1,16 @@
-[gd_scene load_steps=13 format=3 uid="uid://qd2dr56t0uk1"]
+[gd_scene load_steps=14 format=3 uid="uid://qd2dr56t0uk1"]
 
 [ext_resource type="PackedScene" uid="uid://7ohxd0qm20qn" path="res://scenes/player.tscn" id="3_stshx"]
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="3_xifi4"]
 [ext_resource type="Material" uid="uid://wrr7reshtt80" path="res://materials/ground.tres" id="4_15bx4"]
 [ext_resource type="Script" path="res://scripts/camera_controller.gd" id="4_aelyh"]
-[ext_resource type="PackedScene" path="res://scenes/cactus_hazard.tscn" id="6_cainy"]
-[ext_resource type="PackedScene" uid="uid://bj8ad7oh5pca4" path="res://scenes/enemy.tscn" id="6_xkebw"]
+[ext_resource type="PackedScene" uid="uid://byjojrcm551uw" path="res://scenes/cactus_hazard.tscn" id="6_cainy"]
+[ext_resource type="PackedScene" uid="uid://s4fxpd7hwv8e" path="res://scenes/enemy.tscn" id="6_xkebw"]
 [ext_resource type="Script" path="res://scripts/damageable.gd" id="7_onfek"]
+[ext_resource type="PackedScene" uid="uid://ddpr3jiqglkh6" path="res://scenes/collectable_bubble.tscn" id="8_kk2hr"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_4l2np"]
-size = Vector2(100, 100)
+size = Vector2(10000, 10000)
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_l5nr7"]
 
@@ -30,13 +31,14 @@ script = ExtResource("3_xifi4")
 [node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
 transform = Transform3D(1, 0, 0, 0, 0.985949, 0.167044, 0, -0.167044, 0.985949, 0, 6, 10)
 script = ExtResource("4_aelyh")
-lerp_speed = 5.0
+lerp_speed = 20.0
 target = NodePath("../Player")
 offset = Vector3(0, 8, 8)
 
 [node name="Player" parent="." instance=ExtResource("3_stshx")]
 
 [node name="Ground" type="StaticBody3D" parent="."]
+collision_layer = 32
 
 [node name="PlaneMesh" type="MeshInstance3D" parent="Ground"]
 material_override = ExtResource("4_15bx4")
@@ -58,9 +60,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.8559, 1.90735e-06, 8.34557
 [node name="Cactus4" parent="." instance=ExtResource("6_cainy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5137, 1.90735e-06, -14.2483)
 
-[node name="Enemy" parent="." node_paths=PackedStringArray("target") instance=ExtResource("6_xkebw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.27)
-target = NodePath("../Player")
+[node name="Enemy" parent="." instance=ExtResource("6_xkebw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 0, -6.61)
+collision_mask = 13
+script = ExtResource("7_onfek")
+max_health = 100
 
 [node name="Damageable2" type="Node" parent="Enemy"]
 script = ExtResource("7_onfek")
@@ -71,3 +75,21 @@ environment = SubResource("Environment_afun3")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
 transform = Transform3D(0.866025, -0.375609, 0.330027, 0, 0.660054, 0.751218, -0.5, -0.650574, 0.571624, 0, 9.35454, 0)
 shadow_enabled = true
+
+[node name="CollectableBubble" parent="." instance=ExtResource("8_kk2hr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.88721, 0.5, 1.25369)
+
+[node name="CollectableBubble2" parent="." instance=ExtResource("8_kk2hr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.7094, 0.5, 13.4278)
+
+[node name="CollectableBubble3" parent="." instance=ExtResource("8_kk2hr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.4076, 0.5, 14.7278)
+
+[node name="CollectableBubble4" parent="." instance=ExtResource("8_kk2hr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.4787, 0.5, -1.93453)
+
+[node name="CollectableBubble5" parent="." instance=ExtResource("8_kk2hr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.27459, 0.5, -7.68869)
+
+[node name="CollectableBubble6" parent="." instance=ExtResource("8_kk2hr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.7245, 0.5, -0.0531261)

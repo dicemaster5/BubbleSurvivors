@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://75yulxtrp7dk"]
+[gd_scene load_steps=4 format=3 uid="uid://bcxroxs6keajk"]
 
 [ext_resource type="PackedScene" uid="uid://bq3tf10uo7bsb" path="res://models/player/Projectile.glb" id="1_1orbl"]
 [ext_resource type="Script" path="res://scenes/projectile.gd" id="1_qohhj"]
-
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dcvc0"]
 size = Vector3(0.312927, 0.278748, 1.17703)

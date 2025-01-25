@@ -1,4 +1,4 @@
-extends CharacterBody3D
+class_name Player extends CharacterBody3D
 
 @export var max_rotate_speed: float = 5.0
 @export var max_speed : float = 5
@@ -29,5 +29,5 @@ func _physics_process(delta: float) -> void:
 		move_speed = move_toward(move_speed, 0, friction)
 		velocity.x = move_toward(velocity.x, 0, friction)
 		velocity.z = move_toward(velocity.z, 0, friction)
-	
+
 	move_and_slide()

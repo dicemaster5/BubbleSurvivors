@@ -1,10 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://l3wi7vgcx2ui"]
+[gd_scene load_steps=11 format=3 uid="uid://s4fxpd7hwv8e"]
 
 [ext_resource type="Script" path="res://scenes/enemy.gd" id="1_pqivd"]
 [ext_resource type="PackedScene" uid="uid://b4k74vxbwqkvv" path="res://models/enemy/Cactus.glb" id="2_h27gd"]
 [ext_resource type="Material" uid="uid://br3vmrnkoxjwr" path="res://materials/cactus.tres" id="3_js6t3"]
-[ext_resource type="Material" path="res://materials/cactus_hat.tres" id="4_06bfg"]
-[ext_resource type="Material" uid="uid://coapjlsdi1pod" path="res://materials/cactus_spikes.tres" id="5_bupd2"]
+[ext_resource type="Material" uid="uid://cylgormxvsjkq" path="res://materials/cactus_hat.tres" id="4_06bfg"]
+[ext_resource type="Material" uid="uid://cwallljq5t4yk" path="res://materials/cactus_spikes.tres" id="5_bupd2"]
 [ext_resource type="Script" path="res://scripts/damageable.gd" id="6_7kvce"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qow0e"]
