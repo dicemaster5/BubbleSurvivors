@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://fb7e5boc6f0w"]
+
+[ext_resource type="PackedScene" uid="uid://dklpv33s6iqmm" path="res://models/environment/rock_01.glb" id="1_y34jl"]
+[ext_resource type="Material" uid="uid://c4tm1dntpgs6l" path="res://materials/rock.tres" id="2_xiexa"]
+
+[node name="Rock01" type="Node3D"]
+
+[node name="rock_01" parent="." instance=ExtResource("1_y34jl")]
+
+[node name="rock_01" parent="rock_01" index="0"]
+material_override = ExtResource("2_xiexa")
+
+[editable path="rock_01"]
