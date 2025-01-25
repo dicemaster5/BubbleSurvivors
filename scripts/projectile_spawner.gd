@@ -3,6 +3,7 @@ extends Node
 @export var projectile_scene: PackedScene
 @export var fire_rate: float = 0.2
 @export var weapon_kind: WeaponKind = WeaponKind.Shotgun
+@export var sfx_player: AudioStreamPlayer3D
 
 @onready var fire_timer: Timer = $FireTimer
 
@@ -25,6 +26,8 @@ func _on_fire_timer_timeout() -> void:
 			spawn_shotgun_projectiles(3, PI / 6.0)
 		WeaponKind.BigShotgun:
 			spawn_shotgun_projectiles(5, PI / 3.0)
+	
+	sfx_player.play()
 
 func spawn_basic_gun_projectile() -> void:
 	var projectile = projectile_scene.instantiate()

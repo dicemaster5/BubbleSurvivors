@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://7ohxd0qm20qn"]
+[gd_scene load_steps=15 format=3 uid="uid://7ohxd0qm20qn"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_mbgsa"]
 [ext_resource type="Material" uid="uid://cvs5cryl31buk" path="res://materials/bubble.tres" id="2_4uq68"]
@@ -8,18 +8,32 @@
 [ext_resource type="Script" path="res://scripts/projectile_spawner.gd" id="5_feg4p"]
 [ext_resource type="PackedScene" uid="uid://bcxroxs6keajk" path="res://scenes/projectile.tscn" id="6_52ojm"]
 [ext_resource type="PackedScene" uid="uid://bj8ad7oh5pca4" path="res://scenes/enemy.tscn" id="6_wqvc3"]
+[ext_resource type="AudioStream" uid="uid://dqf070qd3kk1k" path="res://SoundEffects/BubblePlayer/Ogg_FireProjectile2.ogg" id="8_p18oq"]
+[ext_resource type="Script" path="res://scenes/area_3d_tester.gd" id="9_m3uq0"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_faupd"]
 radius = 0.75
 
 [sub_resource type="SphereMesh" id="SphereMesh_mi2nk"]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_jjlvl"]
+radius = 0.85
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_hs8o1"]
+random_pitch = 1.1
+streams_count = 2
+stream_0/stream = ExtResource("8_p18oq")
+stream_1/stream = ExtResource("8_p18oq")
+
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("damageable")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 collision_layer = 2
-collision_mask = 28
+collision_mask = 20
 script = ExtResource("1_mbgsa")
 damageable = NodePath("Damageable")
+acceleration = 0.1
+friction = 0.1
+angular_friction = 0.01
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_faupd")
@@ -37,9 +51,11 @@ target_enemy_value = 250
 spawn_delay = 1.5
 enemy_scene = ExtResource("6_wqvc3")
 
-[node name="ProjectileSpawner" type="Node" parent="."]
+[node name="ProjectileSpawner" type="Node" parent="." node_paths=PackedStringArray("sfx_player")]
 script = ExtResource("5_feg4p")
 projectile_scene = ExtResource("6_52ojm")
+fire_rate = 1.0
+sfx_player = NodePath("../AudioStreamPlayer3D")
 
 [node name="FireTimer" type="Timer" parent="ProjectileSpawner"]
 wait_time = 0.4
@@ -48,5 +64,18 @@ autostart = true
 [node name="Damageable" type="Node" parent="."]
 script = ExtResource("4_sup54")
 max_health = 1
+
+[node name="BubbleCollector" type="Area3D" parent="."]
+collision_layer = 8
+collision_mask = 8
+script = ExtResource("9_m3uq0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BubbleCollector"]
+shape = SubResource("SphereShape3D_jjlvl")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+stream = SubResource("AudioStreamRandomizer_hs8o1")
+volume_db = -6.0
 
 [editable path="Ship"]

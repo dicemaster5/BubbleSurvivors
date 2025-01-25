@@ -11,6 +11,8 @@ func _ready() -> void:
 	transform.basis = Basis.looking_at(direction)
 
 func _process(_delta: float) -> void:
+	if distance_target == null:
+		return
 	var distance = global_position.distance_to(distance_target.global_position)
 	if distance > perish_distance:
 		queue_free()

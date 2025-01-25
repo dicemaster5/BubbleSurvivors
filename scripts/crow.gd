@@ -7,6 +7,7 @@ extends Node3D
 @onready var idle_timer: Timer = $IdleTimer
 @onready var move_timer: Timer = $MoveTimer
 @onready var flight_timer: Timer = $FlightTimer
+@onready var flapping_timer: Timer = $FlapWigsTimer
 
 @export var spook_radius: float
 @export var flight_speed: float
@@ -18,19 +19,26 @@ var is_moving = false
 var move_direction: Vector3
 
 func _ready() -> void:
+	flapping_timer.timeout.connect(flap)
 	collision_shape_3d.scale = Vector3(spook_radius, spook_radius, spook_radius)
 
 func _physics_process(delta: float) -> void:
 	if is_flying:
 		global_position += delta * flight_speed * Vector3(move_direction.x, 0.5, move_direction.z)
+
 	if is_moving:
 		global_position += delta * move_speed * move_direction
 
 func fly() -> void:
-	flight_timer.start()
 	is_flying = true
 	regular.visible = false
 	flying.visible = true
+	flight_timer.start()
+	flapping_timer.start()
+
+func flap() -> void:
+	regular.visible = !regular.visible
+	flying.visible = !flying.visible
 
 func _on_area_3d_body_entered(_body: Node3D) -> void:
 	print('area3d')

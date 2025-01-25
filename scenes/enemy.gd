@@ -14,6 +14,7 @@ class_name Enemy extends CharacterBody3D
 @export var collider: CollisionShape3D
 
 @export var projectile_impact: PackedScene
+@export var enemy_model: Node3D
 
 var did_start_dying: bool = false
 
@@ -36,6 +37,7 @@ func _ready() -> void:
 
 func play_hit_effects(_amount: int) -> void:
 	$HitAnimations.play("hit")
+	CollectableBubble.squish(enemy_model, Vector3(0.75,1.5,0.75), Vector3.ONE, 0.12)
 
 	var impact = projectile_impact.instantiate()
 	add_child(impact)

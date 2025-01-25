@@ -27,8 +27,9 @@ func _physics_process(delta: float) -> void:
 	rotation += Vector3(0, rotate_speed * rotate_dir * delta, 0)
 
 	# Movement
-	var move_dir = clamp(Input.get_axis("move_down", "move_up"), 0, 1)
-	if move_dir > 0:
+	#var move_dir = clamp(Input.get_axis("move_down", "move_up"), 0, 1) # Clamped movement NO REVERSE
+	var move_dir = Input.get_axis("move_down", "move_up")
+	if move_dir != 0:
 		move_speed = move_toward(move_speed, max_speed, acceleration)
 		# velocity = move_toward(velocity.x, direction * max_speed, acceleration)
 		velocity = (-transform.basis.z * move_dir) * move_speed

@@ -4,28 +4,19 @@ var is_attached: bool
 
 func _ready() -> void:
 	body_entered.connect(on_body_entered)
+	pass
 
 func _process(_delta: float) -> void:
 	pass
 
 func on_body_entered(body: Node) -> void:
-	# print("Collided with ", body.name)
-	if body is PhysicsBody3D:
-		if body.collision_layer == 2:
-			print("player collided!")
-			if !is_attached:
-				connect_to_body(body)
-			return
-
-		elif body.collision_layer == 8:
-			print("Bubble collided!")
-			if !is_attached:
-				connect_to_body(body)
-			return
-
-		else:
-			print("popped from ", body.collision_layer)
-			pop_bubble()
+	print("Collided with ", body.name)
+	if body is CollectableBubble:
+		if !is_attached:
+			connect_to_body(body)
+	else:
+		print("popped from ", body.collision_layer)
+		pop_bubble()
 
 func connect_to_body(body: Node3D) -> void:
 	print("Bubble Connected! to ", body.name)
@@ -38,7 +29,6 @@ func pop_bubble() -> void:
 	squish(self, Vector3(0.75,1.5,0.75), Vector3.ONE, 0.12)
 	await get_tree().create_timer(0.12).timeout
 	queue_free()
-
 
 ## Squish tween.
 static func squish(node_to_squish: Node3D, squich_amount: Vector3, start_scale: Vector3, squish_duration: float = 0.5) -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://4eino1t10up6"]
+[gd_scene load_steps=13 format=3 uid="uid://bf2kp8re55xpw"]
 
 [ext_resource type="Script" path="res://scenes/projectile_impact.gd" id="1_syopk"]
 
@@ -83,7 +83,7 @@ height = 0.4
 radial_segments = 12
 
 [node name="ProjectileImpact" type="GPUParticles3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.342478, -2.72577)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.342478, -0.58662)
 amount = 12
 lifetime = 1.5
 explosiveness = 1.0
