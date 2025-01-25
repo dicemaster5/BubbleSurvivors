@@ -11,6 +11,7 @@ func _ready() -> void:
 
 func damage(amount := 1):
 	damaged.emit(amount)
-	
+	current_health -= amount
+
 	if current_health <= 0:
 		died.emit()
