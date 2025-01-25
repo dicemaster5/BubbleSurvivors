@@ -36,7 +36,7 @@ func _physics_process(_delta: float) -> void:
 	# make the enemy face the target
 	var target_xy = Vector2(target.global_position.x, target.global_position.z)
 	var self_xy = Vector2(global_position.x, global_position.z)
-	rotation.y = -(target_xy - self_xy).angle() + PI / 2.0
+	rotation.y = -(target_xy - self_xy).angle() - PI / 2.0
 
 	move_and_slide()
 

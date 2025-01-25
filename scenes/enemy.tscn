@@ -1,10 +1,9 @@
-[gd_scene load_steps=22 format=3 uid="uid://bj8ad7oh5pca4"]
+[gd_scene load_steps=21 format=3 uid="uid://bj8ad7oh5pca4"]
 
 [ext_resource type="Script" path="res://scenes/enemy.gd" id="1_pqivd"]
 [ext_resource type="PackedScene" uid="uid://b4k74vxbwqkvv" path="res://models/enemy/Cactus.glb" id="2_h27gd"]
 [ext_resource type="Material" uid="uid://488juvptgnbs" path="res://materials/cactus.tres" id="3_js6t3"]
 [ext_resource type="Material" path="res://materials/cactus_hat.tres" id="4_06bfg"]
-[ext_resource type="Material" uid="uid://kjup5aedw4bp" path="res://materials/cactus_spikes.tres" id="5_bupd2"]
 [ext_resource type="Script" path="res://scripts/damageable.gd" id="6_7kvce"]
 [ext_resource type="AudioStream" uid="uid://b6821vp0hovay" path="res://SoundEffects/CactusEnemy/Ogg_Death1.ogg" id="7_apc5n"]
 [ext_resource type="AudioStream" uid="uid://u6d5l7jjprwb" path="res://SoundEffects/CactusEnemy/Ogg_Death2.ogg" id="8_phm2c"]
@@ -155,9 +154,6 @@ material_override = ExtResource("3_js6t3")
 
 [node name="Cowboy hat" parent="Cactus" index="1"]
 material_override = ExtResource("4_06bfg")
-
-[node name="Spike_001" parent="Cactus" index="2"]
-material_override = ExtResource("5_bupd2")
 
 [node name="Damageable" type="Node" parent="."]
 script = ExtResource("6_7kvce")
