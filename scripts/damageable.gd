@@ -1,4 +1,4 @@
-class_name Damageablev extends Node
+class_name Damageable extends Node
 
 @export var max_health: int = 100
 var current_health: int
