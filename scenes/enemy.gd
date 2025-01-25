@@ -48,6 +48,5 @@ func handle_killed() -> void:
 	$DeathAnimation.play("death")
 
 func handle_despawn() -> void:
-	print("despawned")
 	despawned.emit(value)
 	queue_free()
