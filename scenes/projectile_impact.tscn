@@ -1,0 +1,108 @@
+[gd_scene load_steps=12 format=3 uid="uid://b6yw4yg8obbid"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rydnv"]
+particle_flag_align_y = true
+spread = 180.0
+initial_velocity_min = 12.0
+initial_velocity_max = 14.0
+gravity = Vector3(0, -30, 0)
+scale_min = 0.15
+scale_max = 0.6
+scale_over_velocity_min = 1.0
+scale_over_velocity_max = 14.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3yl57"]
+albedo_color = Color(0, 0.57313, 5.77569e-07, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_3i5cf"]
+material = SubResource("StandardMaterial3D_3yl57")
+top_radius = 0.25
+bottom_radius = 0.0
+height = 0.95
+radial_segments = 4
+rings = 1
+
+[sub_resource type="Curve" id="Curve_r8gn6"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.979339, 0.285714), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_qihde"]
+curve = SubResource("Curve_r8gn6")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ocifd"]
+emission_shape = 1
+emission_sphere_radius = 1.0
+spread = 180.0
+flatness = 1.0
+initial_velocity_min = -0.7
+initial_velocity_max = 1.3
+gravity = Vector3(0, 2, 0)
+scale_min = 0.4
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_qihde")
+scale_over_velocity_min = 2.0
+scale_over_velocity_max = 2.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1okts"]
+transparency = 1
+blend_mode = 1
+albedo_color = Color(0.230315, 0.230315, 0.230315, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_wlr3b"]
+material = SubResource("StandardMaterial3D_1okts")
+radial_segments = 12
+rings = 4
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_obl4d"]
+lifetime_randomness = 1.0
+particle_flag_align_y = true
+spread = 180.0
+initial_velocity_min = 1.0
+initial_velocity_max = 4.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.05
+scale_max = 0.05
+scale_over_velocity_min = 0.5
+scale_over_velocity_max = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4ki82"]
+transparency = 1
+blend_mode = 1
+albedo_color = Color(1, 1, 0, 0.458824)
+emission_enabled = true
+emission = Color(0.89389, 0.89389, 0, 1)
+emission_energy_multiplier = 3.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_vngvw"]
+material = SubResource("StandardMaterial3D_4ki82")
+top_radius = 0.2
+bottom_radius = 0.4
+height = 0.4
+radial_segments = 12
+
+[node name="ProjectileImpact" type="GPUParticles3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.342478, -2.72577)
+amount = 12
+lifetime = 1.5
+explosiveness = 1.0
+randomness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_rydnv")
+draw_pass_1 = SubResource("CylinderMesh_3i5cf")
+
+[node name="ImpactSmoke" type="GPUParticles3D" parent="."]
+amount = 6
+lifetime = 1.5
+explosiveness = 1.0
+randomness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_ocifd")
+draw_pass_1 = SubResource("SphereMesh_wlr3b")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+lifetime = 1.5
+preprocess = 0.01
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_obl4d")
+draw_pass_1 = SubResource("CylinderMesh_vngvw")
