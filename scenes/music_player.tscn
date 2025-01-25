@@ -1,0 +1,17 @@
+[gd_scene load_steps=6 format=3 uid="uid://vtkmdk5ca5o4"]
+
+[ext_resource type="AudioStream" uid="uid://b6821vp0hovay" path="res://SoundEffects/CactusEnemy/Ogg_Death1.ogg" id="1_yyems"]
+[ext_resource type="AudioStream" uid="uid://u6d5l7jjprwb" path="res://SoundEffects/CactusEnemy/Ogg_Death2.ogg" id="2_j48wl"]
+[ext_resource type="AudioStream" uid="uid://cy8bpmslhbb5y" path="res://SoundEffects/CactusEnemy/Ogg_Death3.ogg" id="3_ic6sy"]
+[ext_resource type="Script" path="res://scripts/Musicplayer.gd" id="4_d33wg"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_oelo3"]
+streams_count = 3
+stream_0/stream = ExtResource("1_yyems")
+stream_1/stream = ExtResource("2_j48wl")
+stream_2/stream = ExtResource("3_ic6sy")
+
+[node name="MusicPLayer" type="AudioStreamPlayer3D"]
+stream = SubResource("AudioStreamRandomizer_oelo3")
+autoplay = true
+script = ExtResource("4_d33wg")
