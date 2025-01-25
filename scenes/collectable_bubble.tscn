@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://ddpr3jiqglkh6"]
+[gd_scene load_steps=5 format=3 uid="uid://dbcu8fbojyx8"]
 
 [ext_resource type="Script" path="res://scripts/collectable_bubble.gd" id="1_vtwy5"]
 [ext_resource type="Material" uid="uid://cvs5cryl31buk" path="res://materials/bubble.tres" id="2_wudos"]

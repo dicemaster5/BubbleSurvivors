@@ -15,8 +15,9 @@ signal despawned(value: int)
 func _ready() -> void:
 	$Damageable.died.connect(handle_despawn)
 
-func _physics_process(_delta: float) -> void:
-
+func _physics_process(delta: float) -> void:
+	if target == null:
+		return
 	velocity = (target.global_position - global_position).normalized() * speed
 
 	# make the enemy face the target
@@ -25,7 +26,6 @@ func _physics_process(_delta: float) -> void:
 	rotation.y = -(target_xy - self_xy).angle() + PI / 2.0
 
 	move_and_slide()
-	global_position.y = 0
 
 	if global_position.distance_to(target.global_position) > max_dist_from_target:
 		handle_despawn()
@@ -35,5 +35,5 @@ func handle_despawn() -> void:
 	queue_free()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	pass

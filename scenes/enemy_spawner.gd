@@ -14,7 +14,7 @@ var player_target: Node3D
 var current_enemy_value: int = 0
 
 func _ready() -> void:
-	player_target = get_parent()
+	player_target = get_tree().get_root().get_node("World/Player")
 
 func _process(_delta: float) -> void:
 	while current_enemy_value < target_enemy_value:
@@ -23,7 +23,6 @@ func _process(_delta: float) -> void:
 func spawn_enemy() -> void:
 	var enemy = enemy_scene.instantiate()
 	var enemy_parent = get_tree().get_root()
-	enemy_parent.add_child(enemy)
 
 	enemy.target = player_target
 
@@ -35,9 +34,11 @@ func spawn_enemy() -> void:
 	var rand_radius = sqrt(min_square + randf() * (max_square - min_square))
 
 	enemy.global_position = global_position + Vector3(cos(rand_dir) * rand_radius, 0, sin(rand_dir) * rand_radius)
-	current_enemy_value += enemy.value
-	
 	enemy.despawned.connect(on_enemy_despawned)
+
+	enemy_parent.add_child(enemy)
+
+	current_enemy_value += enemy.value
 
 func on_enemy_despawned(value: int) -> void:
 	current_enemy_value -= value
