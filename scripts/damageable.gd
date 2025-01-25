@@ -4,9 +4,13 @@ class_name Damageablev extends Node
 var current_health: int
 
 signal damaged(amount: int)
+signal died()
 
 func _ready() -> void:
 	current_health = max_health
 
 func damage(amount := 1):
 	damaged.emit(amount)
+	
+	if current_health <= 0:
+		died.emit()

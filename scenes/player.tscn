@@ -22,7 +22,7 @@ material_override = ExtResource("2_4uq68")
 mesh = SubResource("SphereMesh_mi2nk")
 
 [node name="Ship" parent="." instance=ExtResource("3_vheof")]
-transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 0, 0, 0)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
 [node name="Damageable" type="Node" parent="."]
 script = ExtResource("4_sup54")
