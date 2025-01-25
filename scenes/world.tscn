@@ -1,10 +1,10 @@
 [gd_scene load_steps=11 format=3 uid="uid://qd2dr56t0uk1"]
 
-[ext_resource type="PackedScene" uid="uid://cx23jyyh65mji" path="res://scenes/player.tscn" id="3_stshx"]
+[ext_resource type="PackedScene" uid="uid://7ohxd0qm20qn" path="res://scenes/player.tscn" id="3_stshx"]
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="3_xifi4"]
-[ext_resource type="Material" uid="uid://4d5wkp0pm2sw" path="res://materials/ground.tres" id="4_15bx4"]
+[ext_resource type="Material" uid="uid://wrr7reshtt80" path="res://materials/ground.tres" id="4_15bx4"]
 [ext_resource type="Script" path="res://scripts/camera_controller.gd" id="4_aelyh"]
-[ext_resource type="PackedScene" uid="uid://byjojrcm551uw" path="res://scenes/cactus_hazard.tscn" id="6_cainy"]
+[ext_resource type="PackedScene" path="res://scenes/cactus_hazard.tscn" id="6_cainy"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_4l2np"]
 size = Vector2(100, 100)

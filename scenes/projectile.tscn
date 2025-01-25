@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://75yulxtrp7dk"]
+
+[ext_resource type="PackedScene" uid="uid://bq3tf10uo7bsb" path="res://models/player model/Projectile.glb" id="1_1orbl"]
+[ext_resource type="Script" path="res://scenes/projectile.gd" id="1_qohhj"]
+
+[node name="Projectile" type="Node3D"]
+script = ExtResource("1_qohhj")
+
+[node name="Model" parent="." instance=ExtResource("1_1orbl")]
+transform = Transform3D(0.999999, -0.000887018, 0.000552471, 0.000887282, 1, -0.00048441, -0.000552046, 0.000484894, 1, 0, 0, 0)
+
+[node name="Lifetime" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
