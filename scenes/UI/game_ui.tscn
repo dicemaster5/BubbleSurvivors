@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://r65iy714h0ti"]
+
+[ext_resource type="Script" path="res://scenes/UI/game_ui.gd" id="1_ep358"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ugn0x"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_bnv0w"]
+font_size = 40
+
+[node name="GameUI" type="PanelContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ugn0x")
+script = ExtResource("1_ep358")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_constants/margin_top = 16
+
+[node name="TimerLabel" type="Label" parent="MarginContainer"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_bnv0w")
