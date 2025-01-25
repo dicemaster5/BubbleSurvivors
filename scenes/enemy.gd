@@ -5,11 +5,14 @@ extends CharacterBody3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	$Damageable.died.connect(on_died)
 
 func _physics_process(delta: float) -> void:
 	velocity = (target.global_position - global_position).normalized() * speed
 	move_and_slide()
+
+func on_died() -> void:
+	queue_free()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
