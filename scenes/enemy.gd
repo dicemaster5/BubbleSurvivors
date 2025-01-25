@@ -24,8 +24,6 @@ func _ready() -> void:
 
 	$Damageable.scale_max_health(scale_factor)
 
-	$DeathAnimation.animation_finished.connect(handle_despawn)
-
 func _physics_process(_delta: float) -> void:
 	if target == null:
 		return
@@ -45,9 +43,11 @@ func handle_killed() -> void:
 	if did_start_dying:
 		return
 	did_start_dying = true
+	$CollisionShape3D.set_deferred("disabled", true)
 
 	$DeathAnimation.play("death")
 
 func handle_despawn() -> void:
+	print("despawned")
 	despawned.emit(value)
 	queue_free()
