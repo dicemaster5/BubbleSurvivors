@@ -33,6 +33,7 @@ func fly() -> void:
 	flying.visible = true
 
 func _on_area_3d_body_entered(_body: Node3D) -> void:
+	print('area3d')
 	fly()
 
 func _on_flight_timer_timeout() -> void:

@@ -61,11 +61,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.8559, 1.90735e-06, 8.34557
 [node name="Cactus4" parent="." instance=ExtResource("6_cainy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5137, 1.90735e-06, -14.2483)
 
-[node name="CrowSpawner" parent="." instance=ExtResource("6_02e48")]
-spawn_radius = 50.0
-spawn_interval = 15.0
+[node name="CrowSpawner" parent="." node_paths=PackedStringArray("player_ref") instance=ExtResource("6_02e48")]
+player_ref = NodePath("../Player")
+spawn_radius = 20.0
+spawn_interval = 1.0
 
-[node name="TumbleweedSpawner" parent="." instance=ExtResource("7_ar1gb")]
+[node name="TumbleweedSpawner" parent="." node_paths=PackedStringArray("player_ref") instance=ExtResource("7_ar1gb")]
+player_ref = NodePath("../Player")
 tumbleweed_speed = 7.0
 tumbleweed_perish_distance = 100.0
 spawn_radius = 75.0
