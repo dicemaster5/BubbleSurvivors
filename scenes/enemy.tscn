@@ -1,14 +1,51 @@
-[gd_scene load_steps=8 format=3 uid="uid://bj8ad7oh5pca4"]
+[gd_scene load_steps=11 format=3 uid="uid://l3wi7vgcx2ui"]
 
 [ext_resource type="Script" path="res://scenes/enemy.gd" id="1_pqivd"]
 [ext_resource type="PackedScene" uid="uid://b4k74vxbwqkvv" path="res://models/enemy/Cactus.glb" id="2_h27gd"]
-[ext_resource type="Material" path="res://materials/cactus.tres" id="3_js6t3"]
+[ext_resource type="Material" uid="uid://br3vmrnkoxjwr" path="res://materials/cactus.tres" id="3_js6t3"]
 [ext_resource type="Material" path="res://materials/cactus_hat.tres" id="4_06bfg"]
-[ext_resource type="Material" uid="uid://kjup5aedw4bp" path="res://materials/cactus_spikes.tres" id="5_bupd2"]
+[ext_resource type="Material" uid="uid://coapjlsdi1pod" path="res://materials/cactus_spikes.tres" id="5_bupd2"]
 [ext_resource type="Script" path="res://scripts/damageable.gd" id="6_7kvce"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qow0e"]
 size = Vector3(1.85095, 2.84558, 1)
+
+[sub_resource type="Animation" id="Animation_nxew3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cactus:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_eev2e"]
+resource_name = "enemy_move"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cactus:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, -0.0872665), Vector3(0, 0, 0.0872665), Vector3(0, 0, -0.0872665)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p3qvh"]
+_data = {
+"RESET": SubResource("Animation_nxew3"),
+"enemy_move": SubResource("Animation_eev2e")
+}
 
 [node name="Enemy" type="CharacterBody3D"]
 collision_layer = 8
@@ -32,5 +69,11 @@ material_override = ExtResource("5_bupd2")
 
 [node name="Damageable" type="Node" parent="."]
 script = ExtResource("6_7kvce")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_p3qvh")
+}
+autoplay = "enemy_move"
 
 [editable path="Cactus"]
