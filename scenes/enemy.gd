@@ -16,6 +16,7 @@ signal despawned(value: int)
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$Damageable.died.connect(handle_killed)
+	$Damageable.damaged.connect(play_hit_sound)
 
 	var scale_factor = randfn(1.0, 0.2)
 	scale = Vector3(scale_factor, scale_factor, scale_factor)
@@ -23,6 +24,9 @@ func _ready() -> void:
 	value = max(int(float(value) * scale_factor), 1)
 
 	$Damageable.scale_max_health(scale_factor)
+
+func play_hit_sound(_amount: int) -> void:
+	$HitAnimations.play("hit")
 
 func _physics_process(_delta: float) -> void:
 	if target == null:
@@ -45,7 +49,7 @@ func handle_killed() -> void:
 	did_start_dying = true
 	$CollisionShape3D.set_deferred("disabled", true)
 
-	$DeathAnimation.play("death")
+	$HitAnimations.play("death")
 
 func handle_despawn() -> void:
 	despawned.emit(value)

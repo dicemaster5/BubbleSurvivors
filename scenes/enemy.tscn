@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bj8ad7oh5pca4"]
+[gd_scene load_steps=22 format=3 uid="uid://bj8ad7oh5pca4"]
 
 [ext_resource type="Script" path="res://scenes/enemy.gd" id="1_pqivd"]
 [ext_resource type="PackedScene" uid="uid://b4k74vxbwqkvv" path="res://models/enemy/Cactus.glb" id="2_h27gd"]
@@ -9,6 +9,8 @@
 [ext_resource type="AudioStream" uid="uid://b6821vp0hovay" path="res://SoundEffects/CactusEnemy/Ogg_Death1.ogg" id="7_apc5n"]
 [ext_resource type="AudioStream" uid="uid://u6d5l7jjprwb" path="res://SoundEffects/CactusEnemy/Ogg_Death2.ogg" id="8_phm2c"]
 [ext_resource type="AudioStream" uid="uid://cy8bpmslhbb5y" path="res://SoundEffects/CactusEnemy/Ogg_Death3.ogg" id="9_4t1lk"]
+[ext_resource type="AudioStream" uid="uid://b3hkwu32ourbf" path="res://SoundEffects/Projectile/Ogg_Impact1.ogg" id="10_43i42"]
+[ext_resource type="AudioStream" uid="uid://d0pmgqyt432vh" path="res://SoundEffects/Projectile/Ogg_Impact2.ogg" id="11_l112w"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qow0e"]
 size = Vector3(1.85095, 2.84558, 1)
@@ -106,10 +108,35 @@ tracks/2/keys = {
 }]
 }
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_jlvdc"]
+random_pitch = 1.2
+streams_count = 2
+stream_0/stream = ExtResource("10_43i42")
+stream_1/stream = ExtResource("11_l112w")
+
+[sub_resource type="Animation" id="Animation_dh2yd"]
+resource_name = "hit"
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DeathSound")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource("AudioStreamRandomizer_jlvdc")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/0/use_blend = true
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lurgr"]
 _data = {
 "RESET": SubResource("Animation_mle3s"),
-"death": SubResource("Animation_5ap36")
+"death": SubResource("Animation_5ap36"),
+"hit": SubResource("Animation_dh2yd")
 }
 
 [node name="Enemy" type="CharacterBody3D"]
@@ -141,7 +168,7 @@ libraries = {
 }
 autoplay = "enemy_move"
 
-[node name="DeathAnimation" type="AnimationPlayer" parent="."]
+[node name="HitAnimations" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_lurgr")
 }
