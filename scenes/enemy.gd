@@ -17,7 +17,7 @@ signal despawned(value: int)
 func _ready() -> void:
 	$Damageable.died.connect(handle_killed)
 
-	var scale_factor = randfn(1.0, 0.5)
+	var scale_factor = randfn(1.0, 0.2)
 	scale = Vector3(scale_factor, scale_factor, scale_factor)
 
 	value = max(int(float(value) * scale_factor), 1)
