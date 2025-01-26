@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://vimvy2xo2nfx"]
+[gd_scene load_steps=3 format=3 uid="uid://b8er2vinep6dj"]
 
 [ext_resource type="PackedScene" uid="uid://brq1hx0vafmho" path="res://models/environment/rock_small_01.glb" id="1_elfg5"]
-[ext_resource type="Material" uid="uid://c4tm1dntpgs6l" path="res://materials/rock.tres" id="2_surph"]
+[ext_resource type="Material" path="res://materials/rock.tres" id="2_surph"]
 
 [node name="RockSmall01" type="Node3D"]
 

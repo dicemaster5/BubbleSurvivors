@@ -1,10 +1,11 @@
 extends Node
 
+@export var player: Player
+@export var game_over_screen: Control
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
-
+	player.player_died.connect(Callable(game_over_screen.show))
+	pass
 
 func  _input(event: InputEvent) -> void:
 	if event.is_action_pressed("quick_quit"):
@@ -13,6 +14,5 @@ func  _input(event: InputEvent) -> void:
 	if event.is_action_pressed("quick_restart"):
 		get_tree().reload_current_scene()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass

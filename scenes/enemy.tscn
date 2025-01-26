@@ -179,7 +179,6 @@ collision_layer = 4
 collision_mask = 10
 script = ExtResource("1_pqivd")
 drop_item = ExtResource("2_r6bm5")
-drop_chance = 1.0
 collider = NodePath("CollisionShape3D")
 projectile_impact = ExtResource("3_k075m")
 enemy_model = NodePath("Cactus")
@@ -197,10 +196,11 @@ material_override = ExtResource("3_js6t3")
 material_override = ExtResource("4_06bfg")
 
 [node name="Eyes" parent="Cactus" index="2"]
+transform = Transform3D(0.0997105, 0, 0, 0, 0, -0.0997105, 0, 0.0997105, 0, 0, 1.25589, -0.273414)
 material_override = ExtResource("5_8i3jk")
 
 [node name="Mustach" parent="Cactus" index="3"]
-transform = Transform3D(0.0599276, 0, 0, 0, 0, -0.0599276, 0, 0.0599276, 0, 0, 1.07513, -0.308038)
+transform = Transform3D(0.138307, 0, 0, 0, 0, -0.138307, 0, 0.138307, 0, 0, 0.987886, -0.308038)
 material_override = ExtResource("5_8i3jk")
 
 [node name="Spike_003" parent="Cactus" index="4"]

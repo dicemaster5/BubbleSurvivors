@@ -30,10 +30,12 @@ visible = false
 material_override = ExtResource("3_kfir2")
 
 [node name="Eyes" parent="Cactus" index="2"]
+visible = false
 material_override = ExtResource("5_uuww4")
 
 [node name="Mustach" parent="Cactus" index="3"]
 transform = Transform3D(0.0599276, 0, 0, 0, 0, -0.0599276, 0, 0.0599276, 0, -0.000425816, 1.08671, -0.305817)
+visible = false
 material_override = ExtResource("5_uuww4")
 
 [node name="Spike_003" parent="Cactus" index="4"]
