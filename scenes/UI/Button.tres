@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=11 format=3 uid="uid://va1p2t2b2vfo"]
+[gd_resource type="Theme" load_steps=12 format=3 uid="uid://va1p2t2b2vfo"]
 
 [ext_resource type="FontFile" uid="uid://siyxwogde581" path="res://font/Rubik_Bubbles/RubikBubbles-Regular.ttf" id="1_by5d5"]
 [ext_resource type="Texture2D" uid="uid://q82uyy1i2d3v" path="res://art/BubbleSurvivors_Button_Hover.png" id="1_sddv6"]
@@ -19,12 +19,15 @@ corner_detail = 5
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qbesx"]
 
+[sub_resource type="CanvasTexture" id="CanvasTexture_rmk42"]
+diffuse_texture = ExtResource("1_sddv6")
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_f5b0j"]
 content_margin_left = 0.0
 content_margin_top = 16.0
 content_margin_right = 0.0
 content_margin_bottom = 18.0
-texture = ExtResource("1_sddv6")
+texture = SubResource("CanvasTexture_rmk42")
 region_rect = Rect2(25, 17, 653, 305)
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_f3cai"]
