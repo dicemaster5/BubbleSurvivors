@@ -59,10 +59,12 @@ func _physics_process(delta: float) -> void:
 
 	if get_slide_collision_count() > 0 && damageable.current_health > 0:
 		var body = get_slide_collision(0)
-		var col_layer = body.get_collider().get_collision_layer()
-		if col_layer != 1 && col_layer != 8:
-			print("collided and died from col layer: ", col_layer)
-			death()
+		var collider = body.get_collider()
+		if collider != null:
+			var col_layer = collider.get_collision_layer()
+			if col_layer != 1 && col_layer != 8:
+				print("collided and died from col layer: ", col_layer)
+				death()
 
 	move_and_slide()
 
