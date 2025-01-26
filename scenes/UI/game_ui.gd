@@ -4,7 +4,7 @@ extends PanelContainer
 
 @export var time_score: int
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	timer_label.text = format_time_string(time_score)
 
 func _on_timer_timeout() -> void:
