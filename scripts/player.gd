@@ -56,8 +56,7 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, friction)
 		velocity.z = move_toward(velocity.z, 0, friction)
 
-
-	if get_slide_collision_count() > 0:
+	if get_slide_collision_count() > 0 && damageable.current_health > 0:
 		var body = get_slide_collision(0)
 		var col_layer = body.get_collider().get_collision_layer()
 		if col_layer != 1 && col_layer != 8:

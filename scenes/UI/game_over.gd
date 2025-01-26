@@ -6,8 +6,8 @@ extends CenterContainer
 
 signal restart_game
 
-func _ready() -> void:
-	score_label.text = "You survived for %s seconds" % time_score
+func _process(_delta) -> void:
+	score_label.text = "You survived for %s" % Util.format_time_string(time_score, true)
 
 func enable_screen() -> void:
 	show()

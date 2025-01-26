@@ -6,6 +6,7 @@ extends Node3D
 @export var spawn_delay: float = 2
 
 @export var enemy_scene: PackedScene
+@export var enemy_with_gun_scene: PackedScene
 
 @export var spawn_amount_curve: Curve
 
@@ -37,7 +38,13 @@ func _process(delta: float) -> void:
 func spawn_enemy() -> void:
 	if current_enemy_value >= max_spawn_amount_limit:
 		return
-	var enemy: Enemy = enemy_scene.instantiate()
+	
+	var enemy: Enemy
+	if randf() < 0.2:
+		enemy = enemy_with_gun_scene.instantiate()
+	else:
+		enemy = enemy_scene.instantiate()
+
 	var enemy_parent = get_tree().current_scene
 
 	enemy.target = player_target

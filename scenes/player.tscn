@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://7ohxd0qm20qn"]
+[gd_scene load_steps=17 format=3 uid="uid://7ohxd0qm20qn"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_mbgsa"]
 [ext_resource type="Material" uid="uid://cvs5cryl31buk" path="res://materials/bubble.tres" id="2_4uq68"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bsb3fdjfb5a45" path="res://scenes/enemy_spawner.tscn" id="5_6wonv"]
 [ext_resource type="Script" path="res://scripts/projectile_spawner.gd" id="5_feg4p"]
 [ext_resource type="PackedScene" uid="uid://bcxroxs6keajk" path="res://scenes/projectile.tscn" id="6_52ojm"]
+[ext_resource type="PackedScene" uid="uid://o0xrea5qp60e" path="res://scenes/enemy_with_gun.tscn" id="6_r3660"]
 [ext_resource type="PackedScene" uid="uid://bj8ad7oh5pca4" path="res://scenes/enemy.tscn" id="6_wqvc3"]
 [ext_resource type="AudioStream" uid="uid://dqf070qd3kk1k" path="res://SoundEffects/BubblePlayer/Ogg_FireProjectile2.ogg" id="8_p18oq"]
 [ext_resource type="Script" path="res://scenes/area_3d_tester.gd" id="9_m3uq0"]
@@ -56,6 +57,7 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
 [node name="EnemySpawner" parent="." instance=ExtResource("5_6wonv")]
 enemy_scene = ExtResource("6_wqvc3")
+enemy_with_gun_scene = ExtResource("6_r3660")
 spawn_amount_curve = SubResource("Curve_ednpq")
 
 [node name="ProjectileSpawner" type="Node" parent="." node_paths=PackedStringArray("sfx_player")]
