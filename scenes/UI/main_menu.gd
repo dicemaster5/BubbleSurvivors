@@ -8,3 +8,4 @@ func _on_quit_button_pressed() -> void:
 func _on_play_button_pressed() -> void:
 	get_tree().get_root().add_child(WORLD)
 	get_tree().get_current_scene().queue_free()
+	get_tree().current_scene = WORLD
