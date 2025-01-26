@@ -33,11 +33,13 @@ func _ready() -> void:
 
 	value = max(int(float(value) * scale_factor), 1)
 
+	speed *= 1.0 / pow(scale_factor, 4.0)
+
 	$Damageable.scale_max_health(scale_factor)
 
 func play_hit_effects(_amount: int) -> void:
 	$HitAnimations.play("hit")
-	CollectableBubble.squish(enemy_model, Vector3(0.75,1.5,0.75), Vector3.ONE, 0.12)
+	CollectableBubble.squish(enemy_model, Vector3(0.75, 1.5, 0.75), Vector3.ONE, 0.12)
 
 	var impact = projectile_impact.instantiate()
 	add_child(impact)

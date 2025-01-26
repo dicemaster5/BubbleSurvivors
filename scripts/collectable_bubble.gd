@@ -45,7 +45,8 @@ func find_player_parent(node: Node3D) -> Node3D:
 func connect_to_body(body: Node3D) -> void:
 	if not player_attachment:
 		player_attachment = find_player_parent(body)
-		player_attachment.add_upgrade.emit(upgrade)
+		if player_attachment:
+			player_attachment.add_upgrade.emit(upgrade)
 
 	print("Bubble Connected! to ", body.name)
 	squish(self, Vector3(1.2, 0.6, 1.2), Vector3.ONE, 0.2)
