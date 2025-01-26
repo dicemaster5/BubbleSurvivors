@@ -15,4 +15,4 @@ func _physics_process(delta: float) -> void:
 func on_body_entered(body: Node3D) -> void:
 	if body.has_node("Damageable"):
 		body.get_node("Damageable").damage(25)
-		queue_free()
+	queue_free.call_deferred()

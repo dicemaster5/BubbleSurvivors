@@ -4,9 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://b4k74vxbwqkvv" path="res://models/enemy/Cactus.glb" id="2_h27gd"]
 [ext_resource type="PackedScene" uid="uid://dbcu8fbojyx8" path="res://scenes/collectable_bubble.tscn" id="2_r6bm5"]
 [ext_resource type="Material" uid="uid://488juvptgnbs" path="res://materials/cactus.tres" id="3_js6t3"]
-[ext_resource type="PackedScene" uid="uid://4eino1t10up6" path="res://scenes/projectile_impact.tscn" id="3_k075m"]
-[ext_resource type="Material" path="res://materials/cactus_hat.tres" id="4_06bfg"]
-[ext_resource type="Material" path="res://materials/cactus_hair.tres" id="5_8i3jk"]
+[ext_resource type="PackedScene" uid="uid://bf2kp8re55xpw" path="res://scenes/projectile_impact.tscn" id="3_k075m"]
+[ext_resource type="Material" uid="uid://cylgormxvsjkq" path="res://materials/cactus_hat.tres" id="4_06bfg"]
+[ext_resource type="Material" uid="uid://da441aq8ti6fi" path="res://materials/cactus_hair.tres" id="5_8i3jk"]
 [ext_resource type="Material" uid="uid://kjup5aedw4bp" path="res://materials/cactus_spikes.tres" id="5_bupd2"]
 [ext_resource type="Script" path="res://scripts/damageable.gd" id="6_7kvce"]
 [ext_resource type="AudioStream" uid="uid://bp62xpnryp1q6" path="res://SoundEffects/CactusEnemy/Ogg_MakingNoise1.ogg" id="6_pgedy"]
@@ -179,7 +179,7 @@ collision_layer = 4
 collision_mask = 10
 script = ExtResource("1_pqivd")
 drop_item = ExtResource("2_r6bm5")
-drop_chance = 0.2
+drop_chance = 0.35
 collider = NodePath("CollisionShape3D")
 projectile_impact = ExtResource("3_k075m")
 enemy_model = NodePath("Cactus")

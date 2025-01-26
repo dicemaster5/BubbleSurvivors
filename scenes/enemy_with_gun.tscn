@@ -206,7 +206,7 @@ transform = Transform3D(-1.54379, 0, -1.34963e-07, 0, 1.54379, 0, 1.34963e-07, 0
 [node name="ProjectileSpawner" type="Node" parent="." index="6" node_paths=PackedStringArray("sfx_player")]
 script = ExtResource("3_3nycs")
 projectile_scene = ExtResource("5_0vs78")
-fire_rate = 2.5
+fire_rate = 3.5
 weapon_kind = 0
 sfx_player = NodePath("../AudioStreamPlayer3D")
 

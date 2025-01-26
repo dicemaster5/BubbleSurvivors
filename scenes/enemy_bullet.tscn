@@ -9,7 +9,7 @@ size = Vector3(0.312927, 0.278748, 0.505371)
 
 [node name="Projectile" type="RigidBody3D"]
 collision_layer = 16
-collision_mask = 6
+collision_mask = 14
 gravity_scale = 0.0
 continuous_cd = true
 contact_monitor = true
