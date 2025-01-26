@@ -11,7 +11,6 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	position += direction * speed * delta
-	print(direction)
 
 func on_body_entered(body: Node3D) -> void:
 	if body.has_node("Damageable"):

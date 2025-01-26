@@ -5,7 +5,7 @@ extends Node
 @export var weapon_kind: WeaponKind = WeaponKind.Shotgun
 @export var sfx_player: AudioStreamPlayer3D
 
-var active_wep_index = 0;
+@export var active_wep_index = 0;
 
 @onready var fire_timer: Timer = $FireTimer
 
@@ -17,8 +17,10 @@ enum WeaponKind {
 
 func _ready() -> void:
 	fire_timer.timeout.connect(_on_fire_timer_timeout)
-	fire_timer.wait_time = fire_rate
 	fire_timer.start()
+
+func _process(_delta: float) -> void:
+	fire_timer.wait_time = fire_rate
 
 func _input(event):
 	if event.is_action_pressed("change_weapon"):

@@ -3,18 +3,33 @@ class_name Player extends CharacterBody3D
 @export var damageable: Damageable
 
 @export var max_rotate_speed: float = 5.0
-@export var max_speed : float = 5
-@export var acceleration : float = 5
-@export var friction : float = 5
-@export var angular_friction : float = 5
+@export var max_speed: float = 5
+@export var acceleration: float = 5
+@export var friction: float = 5
+@export var angular_friction: float = 5
 
 var move_speed: float
 var rotate_speed: float
 
 signal player_died
 
+signal add_upgrade(upgrade: Upgrade)
+
+signal remove_upgrade(upgrade: Upgrade)
+
+enum Upgrade {
+	None,
+	FireSpread,
+	FireRate,
+	MovementSpeed,
+}
+
+var upgrade_set: Array[Upgrade] = []
+
 func _ready():
 	damageable.died.connect(death)
+	add_upgrade.connect(on_add_upgrade)
+	remove_upgrade.connect(on_remove_upgrade)
 
 func _physics_process(delta: float) -> void:
 	# Rotation
@@ -30,9 +45,12 @@ func _physics_process(delta: float) -> void:
 	#var move_dir = clamp(Input.get_axis("move_down", "move_up"), 0, 1) # Clamped movement NO REVERSE
 	var move_dir = Input.get_axis("move_down", "move_up")
 	if move_dir != 0:
-		move_speed = move_toward(move_speed, max_speed, acceleration)
-		# velocity = move_toward(velocity.x, direction * max_speed, acceleration)
-		velocity = (-transform.basis.z * move_dir) * move_speed
+		var move_speed_multiplier = 1.0
+		if has_upgrade(Upgrade.MovementSpeed):
+			move_speed_multiplier = 1.5
+
+		move_speed = move_toward(move_speed, max_speed * move_speed_multiplier, acceleration)
+		velocity = (-transform.basis.z * move_dir) * move_speed * move_speed_multiplier
 	else:
 		move_speed = move_toward(move_speed, 0, friction)
 		velocity.x = move_toward(velocity.x, 0, friction)
@@ -48,9 +66,30 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
+func _process(_delta: float) -> void:
+	if has_upgrade(Upgrade.FireRate):
+		$ProjectileSpawner.fire_rate = 0.5
+	else:
+		$ProjectileSpawner.fire_rate = 1.0
+	
+	if has_upgrade(Upgrade.FireSpread):
+		$ProjectileSpawner.active_wep_index = 2
+	else:
+		$ProjectileSpawner.active_wep_index = 0
+
+func on_add_upgrade(upgrade: Upgrade) -> void:
+	upgrade_set = upgrade_set.filter(func(u): return u != upgrade)
+	upgrade_set.append(upgrade)
+
+func on_remove_upgrade(upgrade: Upgrade) -> void:
+	upgrade_set = upgrade_set.filter(func(u): return u != upgrade)
+
+func has_upgrade(upgrade: Upgrade) -> bool:
+	return upgrade in upgrade_set
+
 func death() -> void:
 	player_died.emit()
-	squish(self, Vector3(0.75,1.5,0.75), Vector3.ONE, 0.25)
+	squish(self, Vector3(0.75, 1.5, 0.75), Vector3.ONE, 0.25)
 	await get_tree().create_timer(0.25).timeout
 	queue_free.call_deferred()
 
@@ -62,4 +101,3 @@ static func squish(node_to_squish: Node3D, squich_amount: Vector3, start_scale: 
 	tween.tween_property(node_to_squish, "scale", squich_amount, time)
 	tween.tween_property(node_to_squish, "scale", start_scale + (start_scale * 0.15), time)
 	tween.tween_property(node_to_squish, "scale", start_scale, time)
-
