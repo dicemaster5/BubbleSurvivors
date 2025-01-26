@@ -21,6 +21,6 @@ func _on_timer_timeout() -> void:
 		crow.spook_radius = 10
 		crow.flight_speed = 5
 		crow.move_speed = 3
-		var root = get_tree().get_root()
+		var root = get_tree().current_scene
 		root.add_child(crow)
 		crow.global_position = pos

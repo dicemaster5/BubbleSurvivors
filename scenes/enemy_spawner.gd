@@ -38,7 +38,7 @@ func spawn_enemy() -> void:
 	if current_enemy_value >= max_spawn_amount_limit:
 		return
 	var enemy: Enemy = enemy_scene.instantiate()
-	var enemy_parent = get_tree().get_root()
+	var enemy_parent = get_tree().current_scene
 
 	enemy.target = player_target
 

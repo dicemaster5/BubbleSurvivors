@@ -23,6 +23,6 @@ func _on_timer_timeout() -> void:
 		tumbleweed.speed = tumbleweed_speed
 		tumbleweed.distance_target = player_ref
 		tumbleweed.perish_distance = tumbleweed_perish_distance
-		var tumbleweed_root = get_tree().get_root()
+		var tumbleweed_root = get_tree().current_scene
 		tumbleweed_root.add_child(tumbleweed)
 		tumbleweed.global_position = pos
