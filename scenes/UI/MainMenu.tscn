@@ -1,48 +1,66 @@
-[gd_scene load_steps=5 format=3 uid="uid://dcq0f75bgsxqj"]
+[gd_scene load_steps=7 format=3 uid="uid://dcq0f75bgsxqj"]
 
 [ext_resource type="Script" path="res://scenes/UI/main_menu.gd" id="1_0yiey"]
+[ext_resource type="Texture2D" uid="uid://2gcjjcj4i886" path="res://art/BubbleSurvivors_MainMenu.png" id="1_b2ghy"]
 [ext_resource type="FontFile" uid="uid://siyxwogde581" path="res://font/Rubik_Bubbles/RubikBubbles-Regular.ttf" id="2_5xeje"]
 [ext_resource type="Theme" uid="uid://va1p2t2b2vfo" path="res://scenes/UI/Button.tres" id="2_h5en7"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_aswmv"]
+texture = ExtResource("1_b2ghy")
 
 [sub_resource type="LabelSettings" id="LabelSettings_k7wv1"]
 font = ExtResource("2_5xeje")
 font_size = 32
 
-[node name="MainMenu" type="CenterContainer"]
+[node name="MainMenu" type="Panel"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxTexture_aswmv")
 script = ExtResource("1_0yiey")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="BoxContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -137.0
+offset_right = 290.0
+offset_bottom = 137.0
+grow_vertical = 2
+theme_override_constants/margin_left = 80
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer"]
+[node name="Label" type="Label" parent="BoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Bubble Survivors
 "
 label_settings = SubResource("LabelSettings_k7wv1")
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="BoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="BoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="PlayButton" type="Button" parent="VBoxContainer/VBoxContainer"]
+[node name="PlayButton" type="Button" parent="BoxContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_h5en7")
 text = "Play"
 
-[node name="QuitButton" type="Button" parent="VBoxContainer/VBoxContainer"]
+[node name="QuitButton" type="Button" parent="BoxContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_h5en7")
 text = "Quit
 "
 
-[connection signal="pressed" from="VBoxContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="BoxContainer/VBoxContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="BoxContainer/VBoxContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

@@ -1,4 +1,4 @@
-extends CenterContainer
+extends Panel
 
 var WORLD = preload("res://scenes/world.tscn").instantiate()
 
