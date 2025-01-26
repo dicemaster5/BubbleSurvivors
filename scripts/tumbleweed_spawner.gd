@@ -15,13 +15,14 @@ func _ready() -> void:
 	timer.start()
 
 func _on_timer_timeout() -> void:
-	var tumbleweed = TUMBLEWEED.instantiate()
-	var rand_dir = randf_range(0, 2.0 * PI)
-	var pos = player_ref.global_position + Vector3(cos(rand_dir) * spawn_radius, 0, sin(rand_dir) * spawn_radius)
-	tumbleweed.direction = player_ref.global_position - pos + Vector3(randf_range(-15, 15), 0, randf_range(-15, 15))
-	tumbleweed.speed = tumbleweed_speed
-	tumbleweed.distance_target = player_ref
-	tumbleweed.perish_distance = tumbleweed_perish_distance
-	var tumbleweed_root = get_tree().get_root()
-	tumbleweed_root.add_child(tumbleweed)
-	tumbleweed.global_position = pos
+	if is_instance_valid(player_ref):
+		var tumbleweed = TUMBLEWEED.instantiate()
+		var rand_dir = randf_range(0, 2.0 * PI)
+		var pos = player_ref.global_position + Vector3(cos(rand_dir) * spawn_radius, 0, sin(rand_dir) * spawn_radius)
+		tumbleweed.direction = player_ref.global_position - pos + Vector3(randf_range(-15, 15), 0, randf_range(-15, 15))
+		tumbleweed.speed = tumbleweed_speed
+		tumbleweed.distance_target = player_ref
+		tumbleweed.perish_distance = tumbleweed_perish_distance
+		var tumbleweed_root = get_tree().get_root()
+		tumbleweed_root.add_child(tumbleweed)
+		tumbleweed.global_position = pos
