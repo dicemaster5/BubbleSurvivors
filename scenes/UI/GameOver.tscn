@@ -8,12 +8,19 @@
 font = ExtResource("2_ggpwo")
 font_size = 32
 
-[node name="GameOver" type="CenterContainer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="GameOver" type="HBoxContainer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -284.0
+offset_top = -199.0
+offset_right = 460.0
+offset_bottom = 199.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 100
 script = ExtResource("1_il5mf")
 time_score = 53
 
@@ -29,6 +36,21 @@ horizontal_alignment = 1
 [node name="ScoreLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 horizontal_alignment = 1
+
+[node name="EnterNameContainer" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/EnterNameContainer"]
+layout_mode = 2
+text = "Enter your name"
+horizontal_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/EnterNameContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="VBoxContainer/EnterNameContainer"]
+layout_mode = 2
+text = "Save"
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 100)
@@ -48,5 +70,27 @@ layout_mode = 2
 theme = ExtResource("2_k88jg")
 text = "Quit"
 
+[node name="VBoxContainer3" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="VBoxContainer3"]
+layout_mode = 2
+text = "Highscores"
+
+[node name="NoHighscores" type="Label" parent="VBoxContainer3"]
+layout_mode = 2
+text = "No high scores!"
+
+[node name="HighscoresContainer" type="VBoxContainer" parent="VBoxContainer3"]
+layout_mode = 2
+
+[node name="ResetHighscores" type="Button" parent="VBoxContainer3"]
+visible = false
+layout_mode = 2
+text = "Reset highscores"
+
+[connection signal="pressed" from="VBoxContainer/EnterNameContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/VBoxContainer/RetryButton" to="." method="_on_retry_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="VBoxContainer3/ResetHighscores" to="." method="reset_highscores"]
