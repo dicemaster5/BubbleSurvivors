@@ -8,5 +8,5 @@ func _process(_delta: float) -> void:
 
 func area_test(_body_rid: RID, body: Node3D, _body_shape_index: int, _local_shape_index: int) -> void:
 	print(body.name)
-	if body is CollectableBubble:
-		body.connect_to_body(self)
+	if body.has_node("Collectable"):
+		body.get_node("Collectable").connect_to_body(self)

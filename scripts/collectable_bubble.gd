@@ -1,14 +1,10 @@
 class_name CollectableBubble extends RigidBody3D
 
-var is_attached: bool
 var player_attachment: Player
-
 
 @export var upgrade: Player.Upgrade = Player.Upgrade.None
 
 func _ready() -> void:
-	body_entered.connect(on_body_entered)
-
 	# Random size on start
 	scale = scale * randf_range(0.75, 1.25)
 
@@ -27,18 +23,24 @@ func _ready() -> void:
 	else:
 		upgrade = Player.Upgrade.MegaShotgun
 		$BubbleMesh.material_override = load("res://materials/bubble_mega.tres")
+	
+	$Collectable.connected.connect(on_connected)
+	$Collectable.popped.connect(on_popped)
 
-func _process(_delta: float) -> void:
-	pass
+func on_connected(body: Node3D) -> void:
+	if not player_attachment:
+		player_attachment = find_player_parent(body)
+		if player_attachment:
+			player_attachment.add_upgrade.emit(upgrade)
 
-func on_body_entered(body: Node) -> void:
-	print("Collided with ", body.name)
-	if body is CollectableBubble:
-		if !is_attached:
-			connect_to_body(body)
-	else:
-		print("popped from ", body.collision_layer)
-		pop_bubble()
+	squish(self, Vector3(1.2, 0.6, 1.2), Vector3.ONE, 0.2)
+
+func on_popped() -> void:
+	if player_attachment:
+		player_attachment.remove_upgrade.emit(upgrade)
+		player_attachment = null
+	
+	squish(self, Vector3(0.75, 1.5, 0.75), Vector3.ONE, 0.12)
 
 func find_player_parent(node: Node3D) -> Node3D:
 	var parent = node.get_parent()
@@ -47,27 +49,6 @@ func find_player_parent(node: Node3D) -> Node3D:
 			return parent
 		parent = parent.get_parent()
 	return null
-
-func connect_to_body(body: Node3D) -> void:
-	if not player_attachment:
-		player_attachment = find_player_parent(body)
-		if player_attachment:
-			player_attachment.add_upgrade.emit(upgrade)
-
-	print("Bubble Connected! to ", body.name)
-	squish(self, Vector3(1.2, 0.6, 1.2), Vector3.ONE, 0.2)
-	freeze = true
-	reparent.call_deferred(body)
-	is_attached = true
-
-func pop_bubble() -> void:
-	if player_attachment:
-		player_attachment.remove_upgrade.emit(upgrade)
-		player_attachment = null
-	
-	squish(self, Vector3(0.75, 1.5, 0.75), Vector3.ONE, 0.12)
-	await get_tree().create_timer(0.12).timeout
-	queue_free()
 
 ## Squish tween.
 static func squish(node_to_squish: Node3D, squich_amount: Vector3, start_scale: Vector3, squish_duration: float = 0.5) -> void:
