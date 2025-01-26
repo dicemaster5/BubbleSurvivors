@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://dcq0f75bgsxqj"]
+[gd_scene load_steps=7 format=3 uid="uid://dcq0f75bgsxqj"]
 
 [ext_resource type="Script" path="res://scenes/UI/main_menu.gd" id="1_0yiey"]
 [ext_resource type="Texture2D" uid="uid://2gcjjcj4i886" path="res://art/BubbleSurvivors_MainMenu.png" id="1_b2ghy"]
 [ext_resource type="Theme" uid="uid://va1p2t2b2vfo" path="res://scenes/UI/Button.tres" id="2_h5en7"]
 [ext_resource type="Texture2D" uid="uid://cpdwe4sofqp2s" path="res://art/BubbleSurvivors_Logo.png" id="3_8lo6x"]
+[ext_resource type="AudioStream" uid="uid://bbm5ed6tq357g" path="res://Music/MAIN.ogg" id="5_igypu"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_aswmv"]
 texture = ExtResource("1_b2ghy")
@@ -59,6 +60,10 @@ layout_mode = 2
 theme = ExtResource("2_h5en7")
 text = "Quit
 "
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_igypu")
+autoplay = true
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
