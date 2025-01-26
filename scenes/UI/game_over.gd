@@ -55,7 +55,7 @@ func reset_highscores() -> void:
 	set_labels()
 
 func sort_scores(a, b) -> bool:
-	if a[1] < b[1]:
+	if a[1] > b[1]:
 		return true
 	return false
 
