@@ -1,9 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://cq7tqfe1mnjt"]
+[gd_scene load_steps=5 format=3 uid="uid://cq7tqfe1mnjt"]
 
 [ext_resource type="Script" path="res://scenes/UI/game_over.gd" id="1_il5mf"]
-[ext_resource type="Theme" uid="uid://rf13up3wsn4j" path="res://scenes/UI/Button.tres" id="2_k88jg"]
+[ext_resource type="FontFile" uid="uid://siyxwogde581" path="res://font/Rubik_Bubbles/RubikBubbles-Regular.ttf" id="2_ggpwo"]
+[ext_resource type="Theme" uid="uid://va1p2t2b2vfo" path="res://scenes/UI/Button.tres" id="2_k88jg"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_h8l1q"]
+font = ExtResource("2_ggpwo")
 font_size = 32
 
 [node name="GameOver" type="CenterContainer"]
