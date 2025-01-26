@@ -82,7 +82,6 @@ func handle_despawn() -> void:
 func spawn_drop() -> void:
 	if randf() < drop_chance:
 		var item: Node3D = drop_item.instantiate()
-		var enemy_parent = get_tree().get_root()
-		enemy_parent.add_child(item)
+		get_tree().current_scene.add_child(item)
 		item.global_position = global_position + (Vector3.UP * 0.5)
 		print("dropping item!")

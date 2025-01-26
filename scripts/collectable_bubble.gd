@@ -9,6 +9,9 @@ var player_attachment: Player
 func _ready() -> void:
 	body_entered.connect(on_body_entered)
 
+	# Random size on start
+	scale = scale * randf_range(0.75, 1.25)
+
 	var r = randf()
 	if r < 0.5:
 		upgrade = Player.Upgrade.None
