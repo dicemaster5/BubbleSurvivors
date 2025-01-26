@@ -1,6 +1,8 @@
 [gd_resource type="Theme" load_steps=19 format=4 uid="uid://va1p2t2b2vfo"]
 
-[ext_resource type="Texture2D" uid="uid://2dx7wk7qsdfn" path="res://Sprites/ui-sprites.png" id="1_yg17a"]
+[ext_resource type="Texture2D" uid="uid://q82uyy1i2d3v" path="res://art/BubbleSurvivors_Button_Hover.png" id="1_sddv6"]
+[ext_resource type="Texture2D" uid="uid://ddjd26vpu7k5c" path="res://art/BubbleSurvivors_Button_Normal.png" id="2_t5tlf"]
+[ext_resource type="Texture2D" uid="uid://dpivfludy3nas" path="res://art/BubbleSurvivors_Button_Clicked.png" id="3_lk1bv"]
 
 [sub_resource type="Image" id="Image_ltioa"]
 data = {
@@ -2115,20 +2117,16 @@ corner_detail = 5
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qbesx"]
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_t8ak4"]
-diffuse_texture = ExtResource("1_yg17a")
-texture_filter = 1
-
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_f5b0j"]
 content_margin_left = 0.0
 content_margin_top = 16.0
 content_margin_right = 0.0
 content_margin_bottom = 18.0
-texture = SubResource("CanvasTexture_t8ak4")
-region_rect = Rect2(0, 0, 32, 8)
+texture = ExtResource("1_sddv6")
+region_rect = Rect2(25, 17, 653, 305)
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_f3cai"]
-diffuse_texture = ExtResource("1_yg17a")
+diffuse_texture = ExtResource("2_t5tlf")
 texture_filter = 1
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fg7yh"]
@@ -2137,19 +2135,15 @@ content_margin_top = 16.0
 content_margin_right = 0.0
 content_margin_bottom = 18.0
 texture = SubResource("CanvasTexture_f3cai")
-region_rect = Rect2(0, 11, 32, 8)
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_a5n2r"]
-diffuse_texture = ExtResource("1_yg17a")
-texture_filter = 1
+region_rect = Rect2(25, 17, 653, 305)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_w6uwo"]
 content_margin_left = 0.0
 content_margin_top = 16.0
 content_margin_right = 0.0
 content_margin_bottom = 18.0
-texture = SubResource("CanvasTexture_a5n2r")
-region_rect = Rect2(0, 22, 32, 8)
+texture = ExtResource("3_lk1bv")
+region_rect = Rect2(25, 17, 653, 305)
 
 [resource]
 Button/colors/font_color = Color(1, 1, 1, 1)
