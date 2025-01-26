@@ -17,6 +17,7 @@ continuous_cd = true
 contact_monitor = true
 max_contacts_reported = 80
 script = ExtResource("1_vtwy5")
+upgrade = null
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_eu2xa")
