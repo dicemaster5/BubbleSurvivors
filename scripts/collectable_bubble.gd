@@ -21,9 +21,12 @@ func _ready() -> void:
 	elif r < 0.83:
 		upgrade = Player.Upgrade.FireRate
 		$BubbleMesh.material_override = load("res://materials/bubble_red.tres")
-	else:
+	elif r < 0.99:
 		upgrade = Player.Upgrade.MovementSpeed
 		$BubbleMesh.material_override = load("res://materials/bubble_green.tres")
+	else:
+		upgrade = Player.Upgrade.MegaShotgun
+		$BubbleMesh.material_override = load("res://materials/bubble_mega.tres")
 
 func _process(_delta: float) -> void:
 	pass

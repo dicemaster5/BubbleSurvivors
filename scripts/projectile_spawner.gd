@@ -2,7 +2,6 @@ extends Node
 
 @export var projectile_scene: PackedScene
 @export var fire_rate: float = 0.2
-@export var weapon_kind: WeaponKind = WeaponKind.Shotgun
 @export var sfx_player: AudioStreamPlayer3D
 
 @export var active_wep_index = 0;
@@ -10,12 +9,6 @@ extends Node
 @onready var fire_timer: Timer = $FireTimer
 
 var shooter: Node3D
-
-enum WeaponKind {
-	BasicGun = 0,
-	Shotgun = 1,
-	BigShotgun = 2,
-}
 
 func _ready() -> void:
 	shooter = get_parent()
@@ -25,11 +18,6 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	fire_timer.wait_time = fire_rate
 
-func _input(event):
-	if event.is_action_pressed("change_weapon"):
-		active_wep_index += 1
-	pass
-
 func _on_fire_timer_timeout() -> void:
 	match active_wep_index:
 		0:
@@ -38,7 +26,9 @@ func _on_fire_timer_timeout() -> void:
 			spawn_shotgun_projectiles(3, PI / 6.0)
 		2:
 			spawn_shotgun_projectiles(5, PI / 3.0)
-	
+		# mega shotgun
+		3:
+			spawn_shotgun_projectiles(11, 2.0 * PI)
 	sfx_player.play()
 
 func spawn_basic_gun_projectile() -> void:

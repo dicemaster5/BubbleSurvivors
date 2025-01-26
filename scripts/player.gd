@@ -22,6 +22,7 @@ enum Upgrade {
 	FireSpread,
 	FireRate,
 	MovementSpeed,
+	MegaShotgun,
 }
 
 var upgrade_set: Array[Upgrade] = []
@@ -71,10 +72,13 @@ func _process(_delta: float) -> void:
 	else:
 		$ProjectileSpawner.fire_rate = 1.0
 	
-	if has_upgrade(Upgrade.FireSpread):
+	if has_upgrade(Upgrade.MegaShotgun):
+		$ProjectileSpawner.active_wep_index = 3
+	elif has_upgrade(Upgrade.FireSpread):
 		$ProjectileSpawner.active_wep_index = 2
 	else:
 		$ProjectileSpawner.active_wep_index = 0
+	
 
 func on_add_upgrade(upgrade: Upgrade) -> void:
 	upgrade_set = upgrade_set.filter(func(u): return u != upgrade)
