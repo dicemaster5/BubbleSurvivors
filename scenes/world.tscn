@@ -77,6 +77,9 @@ skeleton = NodePath("../GroudCollider")
 shape = SubResource("WorldBoundaryShape3D_l5nr7")
 
 [node name="Player" parent="." instance=ExtResource("3_stshx")]
+max_speed = 7.5
+acceleration = 3.5
+friction = 0.075
 
 [node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
 transform = Transform3D(1, 0, 0, 0, 0.985949, 0.167044, 0, -0.167044, 0.985949, 0, 6, 10)
