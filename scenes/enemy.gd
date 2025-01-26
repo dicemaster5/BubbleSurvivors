@@ -33,7 +33,8 @@ func _ready() -> void:
 
 	value = max(int(float(value) * scale_factor), 1)
 
-	speed *= 1.0 / pow(scale_factor, 4.0)
+	speed = 0.5 + speed * (1.0 / pow(scale_factor, 4.0))
+	speed = clamp(speed, 0.5, 3.0)
 
 	$Damageable.scale_max_health(scale_factor)
 
