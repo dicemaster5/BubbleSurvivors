@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://txbfa4tp6812"]
+
+[ext_resource type="PackedScene" uid="uid://cwqjiqtp1thgc" path="res://models/environment/Windmill.glb" id="1_pramb"]
+[ext_resource type="Material" uid="uid://cylgormxvsjkq" path="res://materials/cactus_hat.tres" id="2_nbibo"]
+[ext_resource type="Material" uid="uid://bsvcr8jhxt7fd" path="res://materials/metal.tres" id="3_vkyvt"]
+[ext_resource type="Script" path="res://scripts/rotater.gd" id="4_go3e4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2jnbs"]
+size = Vector3(3.39673, 5.06458, 3.39453)
+
+[node name="Windmill" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.50043, 0)
+shape = SubResource("BoxShape3D_2jnbs")
+
+[node name="Windmill" parent="." instance=ExtResource("1_pramb")]
+
+[node name="Struts" parent="Windmill" index="0"]
+material_override = ExtResource("2_nbibo")
+
+[node name="Axel" parent="Windmill/Struts" index="0"]
+material_override = ExtResource("3_vkyvt")
+
+[node name="Turbine" parent="Windmill/Struts" index="1"]
+material_override = ExtResource("3_vkyvt")
+script = ExtResource("4_go3e4")
+rotation_speed = 0.25
+rotation_direction = Vector3(0, 1, 0)
+ping_pong = true
+amplitude = Vector3(0, 1, 0)
+
+[node name="Blades" parent="Windmill/Struts/Turbine" index="0"]
+material_override = ExtResource("3_vkyvt")
+script = ExtResource("4_go3e4")
+rotation_speed = 1.0
+rotation_direction = Vector3(0, 0, 1)
+
+[editable path="Windmill"]

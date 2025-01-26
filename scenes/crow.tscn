@@ -1,0 +1,92 @@
+[gd_scene load_steps=9 format=3 uid="uid://b67f0q304p5e3"]
+
+[ext_resource type="PackedScene" uid="uid://bx4yf73urgk64" path="res://models/crow/crow.glb" id="1_20rvm"]
+[ext_resource type="Script" path="res://scripts/crow.gd" id="1_we2q0"]
+[ext_resource type="PackedScene" uid="uid://dfdm40ho8chsa" path="res://models/crow/crow_flying.glb" id="2_nh1xq"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_qhgqb"]
+
+[sub_resource type="Animation" id="Animation_20pw7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("regular:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_bdla3"]
+resource_name = "idle"
+
+[sub_resource type="Animation" id="Animation_j87ij"]
+resource_name = "move"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("regular:position")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.25, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_or10r"]
+_data = {
+"RESET": SubResource("Animation_20pw7"),
+"idle": SubResource("Animation_bdla3"),
+"move": SubResource("Animation_j87ij")
+}
+
+[node name="Crow" type="Node3D"]
+script = ExtResource("1_we2q0")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(0.860347, 0, 0.00527064, 0, 0.860363, 0, -0.00527064, 0, 0.860347, 0, 0, 0)
+collision_layer = 0
+collision_mask = 22
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(8, 0, -3.72529e-09, 0, 8, 0, 3.72529e-09, 0, 8, 0, 0, 0)
+shape = SubResource("SphereShape3D_qhgqb")
+
+[node name="regular" parent="." instance=ExtResource("1_20rvm")]
+transform = Transform3D(-0.279734, 0, -2.44551e-08, 0, 0.279734, 0, 2.44551e-08, 0, -0.279734, 0, 0, 0)
+
+[node name="flying" parent="." instance=ExtResource("2_nh1xq")]
+transform = Transform3D(-0.279734, 0, -2.44551e-08, 0, 0.279734, 0, 2.44551e-08, 0, -0.279734, 0, 0, 0)
+visible = false
+
+[node name="FlightTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[node name="FlapWigsTimer" type="Timer" parent="."]
+wait_time = 0.3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_or10r")
+}
+
+[node name="MoveTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="IdleTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="timeout" from="FlightTimer" to="." method="_on_flight_timer_timeout"]
+[connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]
+[connection signal="timeout" from="IdleTimer" to="." method="_on_idle_timer_timeout"]

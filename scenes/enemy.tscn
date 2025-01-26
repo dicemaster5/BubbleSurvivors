@@ -1,16 +1,226 @@
-[gd_scene load_steps=4 format=3 uid="uid://bj8ad7oh5pca4"]
+[gd_scene load_steps=31 format=3 uid="uid://bj8ad7oh5pca4"]
 
 [ext_resource type="Script" path="res://scenes/enemy.gd" id="1_pqivd"]
-[ext_resource type="PackedScene" uid="uid://b4k74vxbwqkvv" path="res://models/Enemy model/Cactus.glb" id="2_h27gd"]
+[ext_resource type="PackedScene" uid="uid://b4k74vxbwqkvv" path="res://models/enemy/Cactus.glb" id="2_h27gd"]
+[ext_resource type="PackedScene" uid="uid://dbcu8fbojyx8" path="res://scenes/collectable_bubble.tscn" id="2_r6bm5"]
+[ext_resource type="Material" uid="uid://488juvptgnbs" path="res://materials/cactus.tres" id="3_js6t3"]
+[ext_resource type="PackedScene" uid="uid://bf2kp8re55xpw" path="res://scenes/projectile_impact.tscn" id="3_k075m"]
+[ext_resource type="Material" uid="uid://cylgormxvsjkq" path="res://materials/cactus_hat.tres" id="4_06bfg"]
+[ext_resource type="Material" uid="uid://da441aq8ti6fi" path="res://materials/cactus_hair.tres" id="5_8i3jk"]
+[ext_resource type="Material" uid="uid://kjup5aedw4bp" path="res://materials/cactus_spikes.tres" id="5_bupd2"]
+[ext_resource type="Script" path="res://scripts/damageable.gd" id="6_7kvce"]
+[ext_resource type="AudioStream" uid="uid://bp62xpnryp1q6" path="res://SoundEffects/CactusEnemy/Ogg_MakingNoise1.ogg" id="6_pgedy"]
+[ext_resource type="AudioStream" uid="uid://b6821vp0hovay" path="res://SoundEffects/CactusEnemy/Ogg_Death1.ogg" id="7_apc5n"]
+[ext_resource type="AudioStream" uid="uid://db6ek51podm8x" path="res://SoundEffects/CactusEnemy/Ogg_MakingNoise2.ogg" id="7_tvv0u"]
+[ext_resource type="AudioStream" uid="uid://dn4ckssin7nt7" path="res://SoundEffects/CactusEnemy/Ogg_smacktalk1.ogg" id="8_oki4o"]
+[ext_resource type="AudioStream" uid="uid://u6d5l7jjprwb" path="res://SoundEffects/CactusEnemy/Ogg_Death2.ogg" id="8_phm2c"]
+[ext_resource type="AudioStream" uid="uid://cy8bpmslhbb5y" path="res://SoundEffects/CactusEnemy/Ogg_Death3.ogg" id="9_4t1lk"]
+[ext_resource type="AudioStream" uid="uid://bu0sedmn2cl47" path="res://SoundEffects/CactusEnemy/Ogg_smacktalk2.ogg" id="9_v1jox"]
+[ext_resource type="AudioStream" uid="uid://b3hkwu32ourbf" path="res://SoundEffects/Projectile/Ogg_Impact1.ogg" id="10_43i42"]
+[ext_resource type="AudioStream" uid="uid://d0pmgqyt432vh" path="res://SoundEffects/Projectile/Ogg_Impact2.ogg" id="11_l112w"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_3b03r"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_qow0e"]
+size = Vector3(1.85095, 2.84558, 1)
 
-[node name="Enemy" type="CharacterBody3D"]
-collision_layer = 8
-collision_mask = 5
+[sub_resource type="Animation" id="Animation_nxew3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cactus:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_eev2e"]
+resource_name = "enemy_move"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cactus:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, -0.0872665), Vector3(0, 0, 0.0872665), Vector3(0, 0, -0.0872665)]
+}
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_y1c78"]
+playback_mode = 1
+random_pitch = 1.1
+streams_count = 4
+stream_0/stream = ExtResource("6_pgedy")
+stream_1/stream = ExtResource("8_oki4o")
+stream_2/stream = ExtResource("7_tvv0u")
+stream_3/stream = ExtResource("9_v1jox")
+
+[sub_resource type="Animation" id="Animation_bwqw5"]
+resource_name = "make_noises"
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DeathSound")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource("AudioStreamRandomizer_y1c78")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/0/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p3qvh"]
+_data = {
+"RESET": SubResource("Animation_nxew3"),
+"enemy_move": SubResource("Animation_eev2e"),
+"make_noises": SubResource("Animation_bwqw5")
+}
+
+[sub_resource type="Animation" id="Animation_mle3s"]
+length = 0.001
+tracks/0/type = "scale_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cactus")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 1, 1, 1)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_kptvg"]
+streams_count = 3
+stream_0/stream = ExtResource("7_apc5n")
+stream_1/stream = ExtResource("8_phm2c")
+stream_2/stream = ExtResource("9_4t1lk")
+
+[sub_resource type="Animation" id="Animation_5ap36"]
+resource_name = "death"
+length = 1.44
+tracks/0/type = "scale_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cactus")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 1, 1, 1, 0.233333, 1, 0.6, 1, 0.8, 0.5, 1, 1.2, 0.7, 0.9, 0.766667, 1, 0.9, 0.9, 1.1, 1, 1, 0.3, 0.5, 0.2, 1.33333, 1, 0, 0, 0)
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DeathSound")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource("AudioStreamRandomizer_kptvg")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.56667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"handle_despawn"
+}]
+}
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_jlvdc"]
+random_pitch = 1.2
+streams_count = 2
+stream_0/stream = ExtResource("10_43i42")
+stream_1/stream = ExtResource("11_l112w")
+
+[sub_resource type="Animation" id="Animation_dh2yd"]
+resource_name = "hit"
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DeathSound")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource("AudioStreamRandomizer_jlvdc")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/0/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lurgr"]
+_data = {
+"RESET": SubResource("Animation_mle3s"),
+"death": SubResource("Animation_5ap36"),
+"hit": SubResource("Animation_dh2yd")
+}
+
+[node name="Enemy" type="CharacterBody3D" node_paths=PackedStringArray("collider", "enemy_model")]
+collision_layer = 4
+collision_mask = 10
 script = ExtResource("1_pqivd")
+drop_item = ExtResource("2_r6bm5")
+drop_chance = 0.35
+collider = NodePath("CollisionShape3D")
+projectile_impact = ExtResource("3_k075m")
+enemy_model = NodePath("Cactus")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("SphereShape3D_3b03r")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.034369, 0.777256, -0.00280845)
+shape = SubResource("BoxShape3D_qow0e")
 
 [node name="Cactus" parent="." instance=ExtResource("2_h27gd")]
+
+[node name="Body" parent="Cactus" index="0"]
+material_override = ExtResource("3_js6t3")
+
+[node name="Cowboy hat" parent="Cactus" index="1"]
+material_override = ExtResource("4_06bfg")
+
+[node name="Eyes" parent="Cactus" index="2"]
+transform = Transform3D(0.0997105, 0, 0, 0, 0, -0.0997105, 0, 0.0997105, 0, 0, 1.25589, -0.273414)
+material_override = ExtResource("5_8i3jk")
+
+[node name="Mustach" parent="Cactus" index="3"]
+transform = Transform3D(0.138307, 0, 0, 0, 0, -0.138307, 0, 0.138307, 0, 0, 0.987886, -0.308038)
+material_override = ExtResource("5_8i3jk")
+
+[node name="Spike_003" parent="Cactus" index="4"]
+material_override = ExtResource("5_bupd2")
+
+[node name="Damageable" type="Node" parent="."]
+script = ExtResource("6_7kvce")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_p3qvh")
+}
+autoplay = "enemy_move"
+
+[node name="HitAnimations" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_lurgr")
+}
+
+[node name="DeathSound" type="AudioStreamPlayer3D" parent="."]
+
+[editable path="Cactus"]

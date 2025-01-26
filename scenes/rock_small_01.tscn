@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8er2vinep6dj"]
+
+[ext_resource type="PackedScene" uid="uid://brq1hx0vafmho" path="res://models/environment/rock_small_01.glb" id="1_elfg5"]
+[ext_resource type="Material" path="res://materials/rock.tres" id="2_surph"]
+
+[node name="RockSmall01" type="Node3D"]
+
+[node name="rock_small_01" parent="." instance=ExtResource("1_elfg5")]
+
+[node name="rock_small_01" parent="rock_small_01" index="0"]
+material_override = ExtResource("2_surph")
+
+[editable path="rock_small_01"]

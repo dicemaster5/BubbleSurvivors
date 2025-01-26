@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://dw3ufhq6ktc7k"]
+
+[ext_resource type="Script" path="res://scenes/projectile.gd" id="1_ys5bp"]
+[ext_resource type="PackedScene" uid="uid://by23qlii8ffxn" path="res://models/player/Projectile_Bullet.glb" id="2_6ndnc"]
+[ext_resource type="Material" uid="uid://kjup5aedw4bp" path="res://materials/cactus_spikes.tres" id="3_tpibb"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dcvc0"]
+size = Vector3(0.312927, 0.278748, 0.505371)
+
+[node name="Projectile" type="RigidBody3D"]
+collision_layer = 16
+collision_mask = 14
+gravity_scale = 0.0
+continuous_cd = true
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_ys5bp")
+speed = 16.0
+
+[node name="Lifetime" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00993165, 0.00978962, -0.028366)
+shape = SubResource("BoxShape3D_dcvc0")
+
+[node name="Projectile_Bullet" parent="." instance=ExtResource("2_6ndnc")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+
+[node name="Pellet_projectile_001" parent="Projectile_Bullet" index="0"]
+transform = Transform3D(0.0991806, 0, 0, 0, 0.0991806, 0, 0, 0, 0.22551, 0, 0, 0)
+material_override = ExtResource("3_tpibb")
+
+[editable path="Projectile_Bullet"]

@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://dbcu8fbojyx8"]
+
+[ext_resource type="Script" path="res://scripts/collectable_bubble.gd" id="1_vtwy5"]
+[ext_resource type="Material" uid="uid://cvs5cryl31buk" path="res://materials/bubble.tres" id="2_wudos"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_eu2xa"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_47cg7"]
+
+[node name="CollectableBubble" type="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+collision_layer = 8
+collision_mask = 8
+gravity_scale = 0.0
+freeze_mode = 1
+continuous_cd = true
+contact_monitor = true
+max_contacts_reported = 80
+script = ExtResource("1_vtwy5")
+upgrade = null
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_eu2xa")
+
+[node name="BubbleMesh" type="MeshInstance3D" parent="."]
+material_override = ExtResource("2_wudos")
+mesh = SubResource("SphereMesh_47cg7")

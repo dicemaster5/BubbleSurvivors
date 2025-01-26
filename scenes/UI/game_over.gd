@@ -6,13 +6,15 @@ extends CenterContainer
 
 signal restart_game
 
-var WORLD = preload("res://scenes/world.tscn").instantiate()
+func _process(_delta) -> void:
+	score_label.text = "You survived for %s" % Util.format_time_string(time_score, true)
 
-func _ready() -> void:
-	score_label.text = "You survived for %s seconds" % time_score
+func enable_screen() -> void:
+	show()
 
 func _on_quit_button_pressed() -> void:
 	get_tree().quit()
 
 func _on_retry_button_pressed() -> void:
+	get_tree().reload_current_scene()
 	restart_game.emit()

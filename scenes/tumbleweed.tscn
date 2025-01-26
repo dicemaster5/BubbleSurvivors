@@ -1,0 +1,86 @@
+[gd_scene load_steps=7 format=3 uid="uid://buch6atapore"]
+
+[ext_resource type="PackedScene" uid="uid://s48oe61r5p2w" path="res://models/tumbleweed/tumbleweed.glb" id="1_2ido3"]
+[ext_resource type="Script" path="res://scripts/tumbleweed.gd" id="1_7gqse"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_edxp8"]
+radius = 0.707345
+
+[sub_resource type="Animation" id="Animation_oekrx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("tumbleweed:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("tumbleweed:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_sknkw"]
+resource_name = "tumble"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("tumbleweed:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(6.28319, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("tumbleweed:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.75, 1.5, 2.25, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.5, 0), Vector3(0, 1.2, 0), Vector3(0, 0.5, 0), Vector3(0, 1.2, 0), Vector3(0, 0.5, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dav6m"]
+_data = {
+"RESET": SubResource("Animation_oekrx"),
+"tumble": SubResource("Animation_sknkw")
+}
+
+[node name="Tumbleweed" type="RigidBody3D"]
+collision_layer = 0
+script = ExtResource("1_7gqse")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.554744, 0)
+shape = SubResource("SphereShape3D_edxp8")
+
+[node name="tumbleweed" parent="." instance=ExtResource("1_2ido3")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_dav6m")
+}
+autoplay = "tumble"
