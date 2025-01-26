@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://buch6atapore"]
+[gd_scene load_steps=8 format=3 uid="uid://dyx8bls7acmdr"]
 
 [ext_resource type="PackedScene" uid="uid://s48oe61r5p2w" path="res://models/tumbleweed/tumbleweed.glb" id="1_2ido3"]
 [ext_resource type="Script" path="res://scripts/tumbleweed.gd" id="1_7gqse"]
+[ext_resource type="Script" path="res://scripts/collectable.gd" id="3_4020c"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_edxp8"]
 radius = 0.707345
@@ -69,7 +70,12 @@ _data = {
 }
 
 [node name="Tumbleweed" type="RigidBody3D"]
-collision_layer = 0
+collision_layer = 8
+collision_mask = 9
+freeze_mode = 1
+continuous_cd = true
+contact_monitor = true
+max_contacts_reported = 10
 script = ExtResource("1_7gqse")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -84,3 +90,6 @@ libraries = {
 "": SubResource("AnimationLibrary_dav6m")
 }
 autoplay = "tumble"
+
+[node name="Collectable" type="Node" parent="."]
+script = ExtResource("3_4020c")

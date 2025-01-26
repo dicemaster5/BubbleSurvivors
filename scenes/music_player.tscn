@@ -8,15 +8,14 @@
 [ext_resource type="AudioStream" uid="uid://c8e6j3txt7g5j" path="res://Soundtracks/GMOVER.ogg" id="5_12g21"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_oelo3"]
-streams_count = 5
+streams_count = 4
 stream_0/stream = ExtResource("1_tgwan")
 stream_1/stream = ExtResource("2_8qgt7")
 stream_2/stream = ExtResource("3_77arl")
 stream_3/stream = ExtResource("4_y6ppd")
-stream_4/stream = ExtResource("5_12g21")
-stream_4/weight = 0.0
 
 [node name="MusicPLayer" type="AudioStreamPlayer3D"]
 stream = SubResource("AudioStreamRandomizer_oelo3")
 autoplay = true
 script = ExtResource("4_d33wg")
+gameover_music = ExtResource("5_12g21")
