@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="3_xifi4"]
 [ext_resource type="Material" uid="uid://wrr7reshtt80" path="res://materials/ground.tres" id="4_15bx4"]
 [ext_resource type="Script" path="res://scripts/camera_controller.gd" id="4_aelyh"]
-[ext_resource type="PackedScene" uid="uid://vtkmdk5ca5o4" path="res://scenes/music_player.tscn" id="5_hr677"]
+[ext_resource type="PackedScene" uid="uid://dbscc2pu2sm8a" path="res://scenes/music_player.tscn" id="5_hr677"]
 [ext_resource type="PackedScene" path="res://scenes/crow_spawner.tscn" id="6_02e48"]
 [ext_resource type="PackedScene" uid="uid://bldiapng1hbwb" path="res://scenes/tumbleweed_spawner.tscn" id="7_ar1gb"]
 [ext_resource type="PackedScene" uid="uid://r65iy714h0ti" path="res://scenes/UI/game_ui.tscn" id="8_uhfyn"]
@@ -17,7 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://b8er2vinep6dj" path="res://scenes/rock_small_01.tscn" id="14_wh3km"]
 [ext_resource type="Script" path="res://addons/ScatterTool/scatter_data.gd" id="15_a04lp"]
 [ext_resource type="PackedScene" uid="uid://byjojrcm551uw" path="res://scenes/cactus_hazard.tscn" id="15_u16vn"]
-[ext_resource type="PackedScene" path="res://scenes/windmill.tscn" id="17_1khfc"]
+[ext_resource type="PackedScene" uid="uid://txbfa4tp6812" path="res://scenes/windmill.tscn" id="17_1khfc"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_dheg4"]
 

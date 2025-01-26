@@ -10,7 +10,9 @@ config_version=5
 
 [application]
 
-config/name="BubbleSurvivors"
+config/name="The Good The Bad The Bubbly!"
+config/description="Invade the world of cacti and reclaim your bubbles!
+GGJ 2025 submission "
 run/main_scene="res://scenes/UI/MainMenu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
