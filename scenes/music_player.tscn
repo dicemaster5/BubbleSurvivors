@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://vtkmdk5ca5o4"]
+[gd_scene load_steps=8 format=3 uid="uid://dbscc2pu2sm8a"]
 
 [ext_resource type="AudioStream" uid="uid://b75ih23oxtjvd" path="res://Soundtracks/BGM1.ogg" id="1_tgwan"]
 [ext_resource type="AudioStream" uid="uid://ebsyp0vhbfy3" path="res://Soundtracks/BGM2.ogg" id="2_8qgt7"]

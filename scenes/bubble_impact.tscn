@@ -1,6 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://du7mhxi7objjj"]
+[gd_scene load_steps=11 format=3 uid="uid://bedmci5fcimbh"]
 
 [ext_resource type="Material" uid="uid://cvs5cryl31buk" path="res://materials/bubble.tres" id="1_lmkh4"]
+[ext_resource type="Script" path="res://scripts/vfx_player.gd" id="2_0f8as"]
+[ext_resource type="AudioStream" uid="uid://dee5ebirxfvt4" path="res://SoundEffects/BubblePlayer/Ogg_BubbleBurst1.ogg" id="3_6k3ql"]
+[ext_resource type="AudioStream" uid="uid://dtk5r15axxw7t" path="res://SoundEffects/BubblePlayer/Ogg_BubbleBurst2.ogg" id="4_ntlfu"]
+[ext_resource type="AudioStream" uid="uid://dadtjeoxkb4ju" path="res://SoundEffects/BubblePlayer/Ogg_BubbleBurst3.ogg" id="5_26jp3"]
 
 [sub_resource type="Curve" id="Curve_aqk60"]
 _data = [Vector2(0.466942, 0.989011), 0.0, 0.0, 0, 0, Vector2(1, 0.010989), 0.0, 0.0, 0, 0]
@@ -40,8 +44,14 @@ material = ExtResource("1_lmkh4")
 radial_segments = 8
 rings = 6
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_t0jc7"]
+streams_count = 3
+stream_0/stream = ExtResource("3_6k3ql")
+stream_1/stream = ExtResource("4_ntlfu")
+stream_2/stream = ExtResource("5_26jp3")
+
 [node name="BubbleImpact" type="GPUParticles3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.81077, 1.13041, -2.42485)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
 amount = 10
 preprocess = 1.34
 speed_scale = 0.75
@@ -49,3 +59,8 @@ explosiveness = 1.0
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_yvqpl")
 draw_pass_1 = SubResource("SphereMesh_udki4")
+script = ExtResource("2_0f8as")
+emit_on_ready = true
+self_delete_on_finished = true
+sfx = SubResource("AudioStreamRandomizer_t0jc7")
+sfx_positional_3d_range = 30.0

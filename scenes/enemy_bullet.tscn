@@ -15,9 +15,10 @@ continuous_cd = true
 contact_monitor = true
 max_contacts_reported = 1
 script = ExtResource("1_ys5bp")
-speed = 16.0
+speed = 15.0
 
 [node name="Lifetime" type="Timer" parent="."]
+wait_time = 0.8
 one_shot = true
 autostart = true
 

@@ -24,7 +24,7 @@ func on_body_entered(body: Node) -> void:
 func connect_to_body(body: Node3D) -> void:
 	connected.emit(body)
 
-	print("Connected to ", body.name)
+	# print("Connected to ", body.name)
 	get_parent().freeze = true
 	get_parent().reparent.call_deferred(body)
 	is_attached = true

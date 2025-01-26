@@ -3,26 +3,25 @@ class_name CollectableBubble extends RigidBody3D
 var player_attachment: Player
 
 @export var upgrade: Player.Upgrade = Player.Upgrade.None
+@export var bubble_vfx: PackedScene
 
 func _ready() -> void:
-	# Random size on start
-	scale = scale * randf_range(0.75, 1.25)
 
 	var r = randf()
 	if r < 0.5:
 		upgrade = Player.Upgrade.None
 	elif r < 0.66:
 		upgrade = Player.Upgrade.FireSpread
-		$BubbleMesh.material_override = load("res://materials/bubble_purple.tres")
+		$CollisionShape3D/BubbleMesh.material_override = load("res://materials/bubble_purple.tres")
 	elif r < 0.83:
 		upgrade = Player.Upgrade.FireRate
-		$BubbleMesh.material_override = load("res://materials/bubble_red.tres")
+		$CollisionShape3D/BubbleMesh.material_override = load("res://materials/bubble_red.tres")
 	elif r < 0.99:
 		upgrade = Player.Upgrade.MovementSpeed
-		$BubbleMesh.material_override = load("res://materials/bubble_green.tres")
+		$CollisionShape3D/BubbleMesh.material_override = load("res://materials/bubble_green.tres")
 	else:
 		upgrade = Player.Upgrade.MegaShotgun
-		$BubbleMesh.material_override = load("res://materials/bubble_mega.tres")
+		$CollisionShape3D/BubbleMesh.material_override = load("res://materials/bubble_mega.tres")
 	
 	$Collectable.connected.connect(on_connected)
 	$Collectable.popped.connect(on_popped)
@@ -36,6 +35,10 @@ func on_connected(body: Node3D) -> void:
 	squish(self, Vector3(1.2, 0.6, 1.2), Vector3.ONE, 0.2)
 
 func on_popped() -> void:
+	var popvfx = bubble_vfx.instantiate()
+	get_tree().current_scene.add_child(popvfx)
+	popvfx.global_position = global_position
+
 	if player_attachment:
 		player_attachment.remove_upgrade.emit(upgrade)
 		player_attachment = null

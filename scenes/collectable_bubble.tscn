@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dbcu8fbojyx8"]
+[gd_scene load_steps=7 format=3 uid="uid://dbcu8fbojyx8"]
 
 [ext_resource type="Script" path="res://scripts/collectable_bubble.gd" id="1_vtwy5"]
+[ext_resource type="PackedScene" uid="uid://bedmci5fcimbh" path="res://scenes/bubble_impact.tscn" id="2_bs1mt"]
 [ext_resource type="Material" uid="uid://cvs5cryl31buk" path="res://materials/bubble.tres" id="2_wudos"]
 [ext_resource type="Script" path="res://scripts/collectable.gd" id="3_anv2y"]
 
@@ -18,14 +19,15 @@ continuous_cd = true
 contact_monitor = true
 max_contacts_reported = 80
 script = ExtResource("1_vtwy5")
-upgrade = null
+bubble_vfx = ExtResource("2_bs1mt")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_eu2xa")
 
-[node name="BubbleMesh" type="MeshInstance3D" parent="."]
+[node name="BubbleMesh" type="MeshInstance3D" parent="CollisionShape3D"]
 material_override = ExtResource("2_wudos")
 mesh = SubResource("SphereMesh_47cg7")
+skeleton = NodePath("../..")
 
 [node name="Collectable" type="Node" parent="."]
 script = ExtResource("3_anv2y")
